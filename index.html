@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Логгер температуры — Мини-магазин в Telegram</title>
+  <title>Мой магазин в Telegram</title>
   <style>
     body {
       position: relative;
@@ -12,11 +12,13 @@
       justify-content: center;
       align-items: center;
       margin: 0;
-      background: linear-gradient(120deg, #b6fbff 0%, #83a4d4 100%);
+      background:
+        linear-gradient(120deg, rgba(220,245,255,0.7), rgba(130,170,220,0.62)),
+        url('https://web.tk646.ru/wp-content/uploads/2025/07/gftg0wdufx1r0_9xrxonq_d28ae17e662d4e358d5b34cfa7411caf.jpg') center/cover no-repeat;
     }
     h2, h3 {
       text-align: center;
-      margin: 12px 0;
+      margin: 18px 0 12px 0;
     }
     #shopLogo {
       width: 165px;
@@ -30,12 +32,13 @@
       box-shadow: none;
       z-index: 10;
       display: block;
+      transition: opacity 0.3s;
     }
     .orderBtn {
       padding: 14px 32px;
       font-size: 18px;
       font-family: inherit;
-      font-weight: 400;
+      font-weight: 800;
       color: #fff;
       background: linear-gradient(90deg, #2193b0 0%, #6dd5ed 100%);
       border: none;
@@ -43,7 +46,7 @@
       box-shadow: 0 2px 8px rgba(33,147,176,0.15);
       cursor: pointer;
       transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
-      margin-top: 24px;
+      margin-top: 28px;
       display: block;
       width: 280px;
       margin-left: auto;
@@ -53,6 +56,33 @@
       background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
       transform: translateY(-2px) scale(1.02);
       box-shadow: 0 4px 16px rgba(33,147,176,0.22);
+    }
+    .backBtn {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 24px;
+      font-size: 17px;
+      font-family: inherit;
+      background: transparent;
+      color: #3885da;
+      border: 2px solid #b7deff;
+      border-radius: 22px;
+      box-shadow: none;
+      cursor: pointer;
+      margin: 22px auto 0 auto;
+      transition: background 0.16s, color 0.16s, border 0.16s, box-shadow 0.16s;
+      font-weight: 500;
+      gap: 10px;
+    }
+    .backBtn:hover {
+      background: #e0f3fd;
+      color: #1a5da2;
+      border-color: #a1c8e6;
+      box-shadow: 0 2px 8px #bbe7ff45;
+    }
+    body.inner-page #shopLogo {
+      opacity: 0;
+      pointer-events: none;
     }
     #mainSection, #loggerSection, #loggerDetailSection, #loggerPricesSection {
       flex-direction: column;
@@ -76,16 +106,18 @@
       border-radius: 8px;
       max-width: 380px;
       margin: 0 auto 16px;
+      box-sizing: border-box;
+      clear: both;
     }
   </style>
 </head>
 <body>
-  <!-- Логотип -->
-  <img src="https://web.tk646.ru/wp-content/uploads/2025/06/logotip-sk-2020-scaled.png"
-    alt="Логотип магазина" id="shopLogo" />
+  <!-- Логотип только на главной странице -->
+  <img src="https://web.tk646.ru/wp-content/uploads/2025/06/logotip-sk-2020-scaled.png" alt="Логотип магазина" id="shopLogo" />
 
   <!-- Главная секция -->
   <div id="mainSection">
+    <h2 id="helloTitle"></h2>
     <button class="orderBtn" id="loggerBtn">Логгер температуры</button>
     <button class="orderBtn" id="recorderBtn">Термописец</button>
     <button class="orderBtn" id="recorderSiBtn">Термописец в Реестре СИ</button>
@@ -103,8 +135,10 @@
     </p>
     <button class="orderBtn" id="loggerMoreBtn">Подробнее</button>
     <button class="orderBtn" id="loggerPricesBtn" style="margin-top:12px;">Цены и комплекты</button>
-    <br>
-    <button class="orderBtn" id="backBtn" style="background:#eee;color:#333;border:1px solid #ccc;">← Назад</button>
+    <button class="backBtn" id="backBtn">
+      <svg width="24" height="24" fill="none" stroke="#3885da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;"><polyline points="15 18 9 12 15 6"/></svg>
+      Назад
+    </button>
   </div>
 
   <!-- Подробное описание логгера -->
@@ -136,10 +170,13 @@
         <li>Класс защиты: IP54</li>
       </ul>
     </div>
-    <button class="orderBtn" id="loggerDetailBackBtn" style="background:#eee;color:#333;border:1px solid #ccc;">← Назад</button>
+    <button class="backBtn" id="loggerDetailBackBtn">
+      <svg width="24" height="24" fill="none" stroke="#3885da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;"><polyline points="15 18 9 12 15 6"/></svg>
+      Назад
+    </button>
   </div>
 
-  <!-- Комплекты и цены (три варианта) -->
+  <!-- Комплекты и цены -->
   <div id="loggerPricesSection" style="display:none;flex-direction:column;align-items:center;">
     <h2>Цены и комплекты</h2>
     <div class="card-block" style="margin-bottom:22px;">
@@ -169,69 +206,50 @@
       <button class="orderBtn loggerCartBtn">Добавить в корзину</button>
       <div style="clear:both;"></div>
     </div>
-    <button class="orderBtn" id="loggerPricesBackBtn" style="background:#eee;color:#333;border:1px solid #ccc;">← Назад</button>
+    <button class="backBtn" id="loggerPricesBackBtn">
+      <svg width="24" height="24" fill="none" stroke="#3885da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;"><polyline points="15 18 9 12 15 6"/></svg>
+      Назад
+    </button>
   </div>
 
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <script>
+    function setPage(page) {
+      document.body.className = (page === 'main') ? '' : 'inner-page';
+      document.getElementById('mainSection').style.display = page === 'main' ? 'flex' : 'none';
+      document.getElementById('loggerSection').style.display = page === 'logger' ? 'flex' : 'none';
+      document.getElementById('loggerDetailSection').style.display = page === 'detail' ? 'flex' : 'none';
+      document.getElementById('loggerPricesSection').style.display = page === 'prices' ? 'flex' : 'none';
+    }
     document.addEventListener('DOMContentLoaded', function() {
-      // Инициализация и персональное приветствие
+      // Приветствие c именем
+      let firstName = "Гость";
       if (window.Telegram && Telegram.WebApp) {
         Telegram.WebApp.ready();
         const initDataUnsafe = Telegram.WebApp.initDataUnsafe;
-        let firstName = "Гость";
         if (initDataUnsafe && initDataUnsafe.user) {
           firstName = initDataUnsafe.user.first_name || "Гость";
         }
-        if (document.getElementById('mainSection')) {
-          const hello = document.createElement('h2');
-          hello.textContent = `Привет, ${firstName}! 👋`;
-          document.getElementById('mainSection').insertBefore(hello, document.getElementById('loggerBtn'));
-        }
       }
+      document.getElementById('helloTitle').textContent = `Привет, ${firstName}! Добро пожаловать в наш магазин`;
 
-      // Кнопка "Логгер температуры" — переход к карточке
-      document.getElementById('loggerBtn').onclick = function() {
-        document.getElementById('mainSection').style.display = 'none';
-        document.getElementById('loggerSection').style.display = 'flex';
-      };
-      // Кнопка "Подробнее"
-      document.getElementById('loggerMoreBtn').onclick = function() {
-        document.getElementById('loggerSection').style.display = 'none';
-        document.getElementById('loggerDetailSection').style.display = 'flex';
-      };
-      // Кнопка "Цены и комплекты"
-      document.getElementById('loggerPricesBtn').onclick = function() {
-        document.getElementById('loggerSection').style.display = 'none';
-        document.getElementById('loggerPricesSection').style.display = 'flex';
-      };
-      // Возвраты назад
-      document.getElementById('loggerDetailBackBtn').onclick = function() {
-        document.getElementById('loggerDetailSection').style.display = 'none';
-        document.getElementById('loggerSection').style.display = 'flex';
-      };
-      document.getElementById('loggerPricesBackBtn').onclick = function() {
-        document.getElementById('loggerPricesSection').style.display = 'none';
-        document.getElementById('loggerSection').style.display = 'flex';
-      };
-      document.getElementById('backBtn').onclick = function() {
-        document.getElementById('loggerSection').style.display = 'none';
-        document.getElementById('mainSection').style.display = 'flex';
-      };
+      // Кнопки переходов
+      document.getElementById('loggerBtn').onclick = () => setPage('logger');
+      document.getElementById('loggerMoreBtn').onclick = () => setPage('detail');
+      document.getElementById('loggerPricesBtn').onclick = () => setPage('prices');
+      document.getElementById('backBtn').onclick = () => setPage('main');
+      document.getElementById('loggerDetailBackBtn').onclick = () => setPage('logger');
+      document.getElementById('loggerPricesBackBtn').onclick = () => setPage('logger');
+
       // Кнопки "Добавить в корзину"
       Array.from(document.getElementsByClassName('loggerCartBtn')).forEach(btn => {
         btn.onclick = function() {
           alert('Товар добавлен в корзину! (В будущем — полноценная корзина)');
         };
       });
-
-      // Заглушки для остальных кнопок
-      document.getElementById('recorderBtn').onclick = function() {
-        alert('Раздел "Термописец" появится скоро!');
-      };
-      document.getElementById('recorderSiBtn').onclick = function() {
-        alert('Раздел "Термописец в Реестре СИ" появится скоро!');
-      };
+      // Заглушки на остальные разделы
+      document.getElementById('recorderBtn').onclick = () => alert('Раздел "Термописец" появится скоро!');
+      document.getElementById('recorderSiBtn').onclick = () => alert('Раздел "Термописец в Реестре СИ" появится скоро!');
     });
   </script>
 </body>
