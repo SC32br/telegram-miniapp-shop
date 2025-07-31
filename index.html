@@ -19,4 +19,22 @@
     console.log('Ошибка: SDK Telegram не найден');
   }
 </script>
+<script>
+  if (window.Telegram && Telegram.WebApp) {
+    Telegram.WebApp.ready();
+
+    // Получить имя пользователя Telegram, если есть доступ
+    const initDataUnsafe = Telegram.WebApp.initDataUnsafe;
+    let firstName = "Гость";
+    if (initDataUnsafe && initDataUnsafe.user) {
+      firstName = initDataUnsafe.user.first_name || "Гость";
+    }
+
+    // Создать и добавить приветствие на страницу
+    const hello = document.createElement('h2');
+    hello.textContent = `Привет, ${firstName}! 👋 Добро пожаловать в магазин!`;
+    document.body.appendChild(hello);
+  }
+</script>
+
 
