@@ -12,7 +12,6 @@
       justify-content: center;
       align-items: center;
       margin: 0;
-      /* ВСЕГДА фирменная подложка! */
       background:
         linear-gradient(120deg, rgba(220,245,255,0.7), rgba(130,170,220,0.62)),
         url('https://web.tk646.ru/wp-content/uploads/2025/07/gftg0wdufx1r0_9xrxonq_d28ae17e662d4e358d5b34cfa7411caf.jpg') center/cover no-repeat;
@@ -45,6 +44,19 @@
       display: block;
       transition: opacity 0.3s;
     }
+    body.inner-page #shopLogo {
+      opacity: 0;
+      pointer-events: none;
+    }
+    /* Универсальные стили для всех секций */
+    #mainSection, #loggerSection, #loggerDetailSection, #loggerPricesSection {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      display: flex;
+    }
+    /* Кнопки */
     .orderBtn {
       padding: 14px 32px;
       font-size: 18px;
@@ -92,26 +104,7 @@
       border-color: #a1c8e6;
       box-shadow: 0 2px 8px #bbe7ff45;
     }
-    body.inner-page #shopLogo {
-      opacity: 0;
-      pointer-events: none;
-    }
-    #mainSection, #loggerSection, #loggerDetailSection, #loggerPricesSection {
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      display: flex;
-    }
-    .card-img {
-      width: 170px;
-      height: auto;
-      margin: 14px 0 10px 0;
-      box-shadow: 0 2px 8px #b6c2d5a0;
-      border-radius: 8px;
-      background: #fff;
-      display: block;
-    }
+    /* Карточки */
     .card-block {
       background: rgba(255,255,255,0.7);
       padding: 16px 14px 8px 14px;
@@ -121,10 +114,27 @@
       box-sizing: border-box;
       clear: both;
     }
+    /* Картинки товаров */
+    .card-img {
+      width: 170px;
+      height: auto;
+      margin: 14px 0 10px 0;
+      box-shadow: 0 2px 8px #b6c2d5a0;
+      border-radius: 8px;
+      background: transparent; /* для прозрачных PNG */
+      display: block;
+    }
+    /* Дополнительные стили для секций */
+    ul {
+      margin: 0 0 8px 0;
+      padding-left: 22px;
+      text-align: left;
+      font-size: 15px;
+    }
   </style>
 </head>
 <body>
-  <!-- ЛОГОТИП: только на главной -->
+  <!-- ЛОГОТИП -->
   <img src="https://web.tk646.ru/wp-content/uploads/2025/06/logotip-sk-2020-scaled.png" alt="Логотип магазина" id="shopLogo" />
 
   <!-- ГЛАВНАЯ СЕКЦИЯ -->
@@ -137,9 +147,12 @@
 
   <!-- КАРТОЧКА: Логгер температуры -->
   <div id="loggerSection" style="display:none">
-    <h2>Логгер температуры <span style="font-size:15px;color:#3885da;">Эскорт TH-BLE</span></h2>
-    <img src="https://web.tk646.ru/wp-content/uploads/2025/07/eskort-th-ble_2234.png"
-      alt="Логгер температуры" class="card-img" />
+    <h2 style="text-align:center;">
+      Логгер температуры <br>
+      <span style="display:block; font-size:30px; color:#3885da; font-weight:800; margin-top:8px;">Эскорт TH-BLE</span>
+    </h2>
+    <img src="https://web.tk646.ru/wp-content/uploads/2025/07/th-ble_podklyuchenie_k_datchiku.gif"
+         alt="Логгер температуры" class="card-img" />
     <p style="max-width:350px;margin:0 auto 18px;text-align:center;font-weight:800;">
       Умный беспроводной датчик для мониторинга температуры, влажности и магнитного поля.<br>
       Внесён в реестр СИ РФ, BLE дальностью до 200 метров, 3 года автономной работы.<br>
@@ -157,9 +170,9 @@
   <!-- ПОДРОБНОЕ ОПИСАНИЕ -->
   <div id="loggerDetailSection" style="display:none">
     <h2>Эскорт TH-BLE — подробное описание</h2>
-    <img src="https://web.tk646.ru/wp-content/uploads/2025/07/eskort-th-ble_2234.png" class="card-img" />
+    <img src="https://web.tk646.ru/wp-content/uploads/2025/07/eskort-th-ble_2234.png" class="card-img" alt="Эскорт TH-BLE" />
     <div class="card-block">
-      <ul style="margin:0 0 8px 0;padding-left:22px;text-align:left;font-size:15px;">
+      <ul>
         <li><b>Назначение:</b> мониторинг температуры, влажности, магнитного поля в транспорте, на складах, в медицине и промышленности</li>
         <li><b>Беспроводная связь:</b> Bluetooth Low Energy 4.0/5 Long Range, до 200 м</li>
         <li><b>Автономия:</b> до 3 лет работы от батареи</li>
@@ -177,7 +190,7 @@
     </div>
     <div class="card-block" style="margin-bottom:28px;">
       <b>Технические характеристики:</b>
-      <ul style="margin:0;padding-left:22px;text-align:left;font-size:15px;">
+      <ul>
         <li>Диапазон температуры: -40°С…+50°С, погрешность ±0,5°С</li>
         <li>Влажность: 1–100%, погрешность ±5%</li>
         <li>Габариты: 65×90×40 мм, масса ≤0,4 кг</li>
@@ -197,7 +210,7 @@
     <h2>Цены и комплекты</h2>
     <div class="card-block" style="margin-bottom:22px;">
       <img src="https://web.tk646.ru/wp-content/uploads/2025/07/eskort-th-ble_2231.png" alt="TH-BLE датчик"
-           style="width:105px;height:auto;float:right;margin:0 0 8px 16px;">
+           style="width:105px;height:auto;float:right;margin:0 0 8px 16px;background:transparent;">
       <b>Логгер Эскорт TH-BLE</b><br>
       Беспроводной датчик температуры, влажности, магнитного поля. Bluetooth BLE, мобильное приложение. <b>Без поверки</b>.
       <div style="font-size:18px;color:#248d00;margin:10px 0 6px 0;font-weight:800;"><b>7 500 ₽</b></div>
@@ -259,7 +272,7 @@
       document.getElementById('loggerDetailBackBtn').onclick = () => setPage('logger');
       document.getElementById('loggerPricesBackBtn').onclick = () => setPage('logger');
       // Кнопки "Добавить в корзину"
-      Array.from(document.getElementsByClassName('loggerCartBtn')).forEach(btn => {
+      document.querySelectorAll('.loggerCartBtn').forEach(btn => {
         btn.onclick = function() {
           alert('Товар добавлен в корзину! (В будущем — полноценная корзина)');
         };
