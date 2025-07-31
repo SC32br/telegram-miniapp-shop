@@ -12,22 +12,25 @@
       justify-content: center;
       align-items: center;
       margin: 0;
-      background: #f7fbfc;
+      /* Красивая подложка-фото с полупрозрачным градиентом */
+      background: 
+        linear-gradient(120deg, rgba(220,245,255,0.7), rgba(130,170,220,0.4)),
+        url('https://web.tk646.ru/wp-content/uploads/2025/07/gftg0wdufx1r0_9xrxonq_d28ae17e662d4e358d5b34cfa7411caf.jpg') center/cover no-repeat;
     }
     h1, p, h2 {
       text-align: center;
       margin: 12px 0;
     }
     #shopLogo {
-      width: 165px;          /* 1,5 раза больше стандартного */
+      width: 165px;          /* 1,5 раза больше */
       height: auto;
-      position: absolute;    /* Абсолютное позиционирование */
+      position: absolute;
       top: 24px;
       left: 24px;
       margin: 0;
-      border-radius: 0;      /* Без скруглений */
-      background: transparent; /* Без фона */
-      box-shadow: none;      /* Без тени */
+      border-radius: 0;      /* без скруглений */
+      background: transparent;
+      box-shadow: none;
       z-index: 10;
       display: block;
     }
@@ -53,15 +56,15 @@
   </style>
 </head>
 <body>
-  <!-- Логотип магазина слева вверху -->
+  <!-- Логотип магазина -->
   <img src="https://web.tk646.ru/wp-content/uploads/2025/06/logotip-sk-2020-scaled.png" alt="Логотип магазина" id="shopLogo" />
 
-  <!-- Основной контент -->
+  <!-- Основное содержимое -->
   <h1>Добро пожаловать в мой магазин!</h1>
   <p>Здесь скоро появятся товары 🛒</p>
   <button id="orderBtn">Сделать заказ</button>
 
-  <!-- Telegram WebApp JS + логика приветствия и кнопки -->
+  <!-- Telegram WebApp SDK + логика приветствия и кнопки -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -74,7 +77,7 @@
         if (initDataUnsafe && initDataUnsafe.user) {
           firstName = initDataUnsafe.user.first_name || "Гость";
         }
-        // Приветствие (будет только одно, перед кнопкой)
+        // Приветствие
         const hello = document.createElement('h2');
         hello.textContent = `Привет, ${firstName}! 👋 Добро пожаловать в магазин!`;
         document.body.insertBefore(hello, document.getElementById('orderBtn'));
@@ -82,7 +85,7 @@
         console.log('Ошибка: SDK Telegram не найден');
       }
 
-      // Логика кнопки "Сделать заказ"
+      // Обработчик кнопки "Сделать заказ"
       const btn = document.getElementById('orderBtn');
       if (btn) {
         btn.addEventListener('click', function() {
