@@ -16,9 +16,19 @@
         linear-gradient(120deg, rgba(220,245,255,0.7), rgba(130,170,220,0.62)),
         url('https://web.tk646.ru/wp-content/uploads/2025/07/gftg0wdufx1r0_9xrxonq_d28ae17e662d4e358d5b34cfa7411caf.jpg') center/cover no-repeat;
     }
-    h2, h3 {
+    h2#helloTitle {
       text-align: center;
-      margin: 18px 0 12px 0;
+      margin: 32px 0 0 0;
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: 0.01em;
+      color: #134b6b;
+      white-space: pre-line;
+      background: linear-gradient(90deg, #2193b0 0%, #2bc0e4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     #shopLogo {
       width: 165px;
@@ -51,6 +61,7 @@
       width: 280px;
       margin-left: auto;
       margin-right: auto;
+      letter-spacing: 0.01em;
     }
     .orderBtn:hover {
       background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
@@ -63,6 +74,7 @@
       padding: 10px 24px;
       font-size: 17px;
       font-family: inherit;
+      font-weight: 800;
       background: transparent;
       color: #3885da;
       border: 2px solid #b7deff;
@@ -71,7 +83,6 @@
       cursor: pointer;
       margin: 22px auto 0 auto;
       transition: background 0.16s, color 0.16s, border 0.16s, box-shadow 0.16s;
-      font-weight: 500;
       gap: 10px;
     }
     .backBtn:hover {
@@ -112,10 +123,10 @@
   </style>
 </head>
 <body>
-  <!-- Логотип только на главной странице -->
+  <!-- ЛОГОТИП: только на главной -->
   <img src="https://web.tk646.ru/wp-content/uploads/2025/06/logotip-sk-2020-scaled.png" alt="Логотип магазина" id="shopLogo" />
 
-  <!-- Главная секция -->
+  <!-- ГЛАВНАЯ СЕКЦИЯ -->
   <div id="mainSection">
     <h2 id="helloTitle"></h2>
     <button class="orderBtn" id="loggerBtn">Логгер температуры</button>
@@ -123,12 +134,12 @@
     <button class="orderBtn" id="recorderSiBtn">Термописец в Реестре СИ</button>
   </div>
 
-  <!-- Карточка логгера: краткое описание и две кнопки -->
+  <!-- КАРТОЧКА: Логгер температуры (+ две кнопки и кнопка "Назад") -->
   <div id="loggerSection" style="display:none">
     <h2>Логгер температуры <span style="font-size:15px;color:#3885da;">Эскорт TH-BLE</span></h2>
     <img src="https://web.tk646.ru/wp-content/uploads/2025/07/eskort-th-ble_2234.png"
       alt="Логгер температуры" class="card-img" />
-    <p style="max-width:350px;margin:0 auto 18px;text-align:center;">
+    <p style="max-width:350px;margin:0 auto 18px;text-align:center;font-weight:800;">
       Умный беспроводной датчик для мониторинга температуры, влажности и магнитного поля.<br>
       Внесён в реестр СИ РФ, BLE дальностью до 200 метров, 3 года автономной работы.<br>
       Устойчив к пыли и влаге (IP54), хранит данные даже без связи.
@@ -141,7 +152,7 @@
     </button>
   </div>
 
-  <!-- Подробное описание логгера -->
+  <!-- Подробное описание -->
   <div id="loggerDetailSection" style="display:none">
     <h2>Эскорт TH-BLE — подробное описание</h2>
     <img src="https://web.tk646.ru/wp-content/uploads/2025/07/eskort-th-ble_2234.png" class="card-img" />
@@ -184,7 +195,7 @@
         style="width:105px;height:auto;float:right;margin:0 0 8px 16px;">
       <b>Логгер Эскорт TH-BLE</b><br>
       Беспроводной датчик температуры, влажности, магнитного поля. Bluetooth BLE, мобильное приложение. <b>Без поверки</b>.
-      <div style="font-size:18px;color:#248d00;margin:10px 0 6px 0;"><b>7 500 ₽</b></div>
+      <div style="font-size:18px;color:#248d00;margin:10px 0 6px 0;font-weight:800;"><b>7 500 ₽</b></div>
       <button class="orderBtn loggerCartBtn">Добавить в корзину</button>
       <div style="clear:both;"></div>
     </div>
@@ -193,7 +204,7 @@
         style="width:95px;height:auto;float:right;margin:0 0 8px 16px;">
       <b>Метрологическая поверка Эскорт TH-BLE</b><br>
       Поверка в аккредитованной лаборатории, свидетельство о поверке, все документы.
-      <div style="font-size:18px;color:#248d00;margin:10px 0 6px 0;"><b>2 500 ₽</b></div>
+      <div style="font-size:18px;color:#248d00;margin:10px 0 6px 0;font-weight:800;"><b>2 500 ₽</b></div>
       <button class="orderBtn loggerCartBtn">Добавить в корзину</button>
       <div style="clear:both;"></div>
     </div>
@@ -202,7 +213,7 @@
         style="width:95px;height:auto;float:right;margin:0 0 8px 16px;">
       <b>Логгер Эскорт TH-BLE с поверкой</b><br>
       Датчик с поверкой, внесён в Госреестр СИ РФ. Полный комплект документов.
-      <div style="font-size:18px;color:#248d00;margin:10px 0 6px 0;"><b>10 000 ₽</b></div>
+      <div style="font-size:18px;color:#248d00;margin:10px 0 6px 0;font-weight:800;"><b>10 000 ₽</b></div>
       <button class="orderBtn loggerCartBtn">Добавить в корзину</button>
       <div style="clear:both;"></div>
     </div>
@@ -222,7 +233,7 @@
       document.getElementById('loggerPricesSection').style.display = page === 'prices' ? 'flex' : 'none';
     }
     document.addEventListener('DOMContentLoaded', function() {
-      // Приветствие c именем
+      // Приветствие с именем, новая строка и эмодзи
       let firstName = "Гость";
       if (window.Telegram && Telegram.WebApp) {
         Telegram.WebApp.ready();
@@ -231,23 +242,23 @@
           firstName = initDataUnsafe.user.first_name || "Гость";
         }
       }
-      document.getElementById('helloTitle').textContent = `Привет, ${firstName}! Добро пожаловать в наш магазин`;
+      document.getElementById('helloTitle').textContent =
+        `👋 Привет, ${firstName}!\n🌟 Добро пожаловать в наш магазин! 🛒`;
 
-      // Кнопки переходов
+      // Переходы по разделам
       document.getElementById('loggerBtn').onclick = () => setPage('logger');
       document.getElementById('loggerMoreBtn').onclick = () => setPage('detail');
       document.getElementById('loggerPricesBtn').onclick = () => setPage('prices');
       document.getElementById('backBtn').onclick = () => setPage('main');
       document.getElementById('loggerDetailBackBtn').onclick = () => setPage('logger');
       document.getElementById('loggerPricesBackBtn').onclick = () => setPage('logger');
-
       // Кнопки "Добавить в корзину"
       Array.from(document.getElementsByClassName('loggerCartBtn')).forEach(btn => {
         btn.onclick = function() {
           alert('Товар добавлен в корзину! (В будущем — полноценная корзина)');
         };
       });
-      // Заглушки на остальные разделы
+      // Остальные товары (заглушка)
       document.getElementById('recorderBtn').onclick = () => alert('Раздел "Термописец" появится скоро!');
       document.getElementById('recorderSiBtn').onclick = () => alert('Раздел "Термописец в Реестре СИ" появится скоро!');
     });
