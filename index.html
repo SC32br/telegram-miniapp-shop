@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Мой магазин в Telegram</title>
+</head>
+<body>
+  <h1>Добро пожаловать в мой магазин!</h1>
+  <p>Здесь скоро появятся товары 🛒</p>
+</body>
+</html>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>
+  // Проверяем, что SDK подключен, и выводим приветствие в консоль
+  if (window.Telegram.WebApp) {
+    Telegram.WebApp.ready();
+    console.log('Telegram WebApp SDK подключен');
+  } else {
+    console.log('Ошибка: SDK Telegram не найден');
+  }
+</script>
+
