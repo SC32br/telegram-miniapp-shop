@@ -12,8 +12,7 @@
       justify-content: center;
       align-items: center;
       margin: 0;
-      /* Красивая подложка-фото с полупрозрачным градиентом */
-      background: 
+      background:
         linear-gradient(120deg, rgba(220,245,255,0.7), rgba(130,170,220,0.4)),
         url('https://web.tk646.ru/wp-content/uploads/2025/07/gftg0wdufx1r0_9xrxonq_d28ae17e662d4e358d5b34cfa7411caf.jpg') center/cover no-repeat;
     }
@@ -22,19 +21,19 @@
       margin: 12px 0;
     }
     #shopLogo {
-      width: 165px;          /* 1,5 раза больше */
+      width: 165px;
       height: auto;
       position: absolute;
       top: 24px;
       left: 24px;
       margin: 0;
-      border-radius: 0;      /* без скруглений */
+      border-radius: 0;
       background: transparent;
       box-shadow: none;
       z-index: 10;
       display: block;
     }
-    #orderBtn {
+    .orderBtn {
       padding: 14px 32px;
       font-size: 18px;
       font-family: inherit;
@@ -47,8 +46,11 @@
       transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
       margin-top: 24px;
       display: block;
+      width: 280px;
+      margin-left: auto;
+      margin-right: auto;
     }
-    #orderBtn:hover {
+    .orderBtn:hover {
       background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
       transform: translateY(-2px) scale(1.02);
       box-shadow: 0 4px 16px rgba(33,147,176,0.22);
@@ -56,15 +58,17 @@
   </style>
 </head>
 <body>
-  <!-- Логотип магазина -->
+  <!-- Логотип -->
   <img src="https://web.tk646.ru/wp-content/uploads/2025/06/logotip-sk-2020-scaled.png" alt="Логотип магазина" id="shopLogo" />
 
-  <!-- Основное содержимое -->
   <h1>Добро пожаловать в мой магазин!</h1>
   <p>Здесь скоро появятся товары 🛒</p>
-  <button id="orderBtn">Сделать заказ</button>
+  
+  <!-- Три отдельных кнопки -->
+  <button class="orderBtn" id="loggerBtn">Логгер температуры</button>
+  <button class="orderBtn" id="recorderBtn">Термописец</button>
+  <button class="orderBtn" id="recorderSiBtn">Термописец в Реестре СИ</button>
 
-  <!-- Telegram WebApp SDK + логика приветствия и кнопки -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -80,18 +84,21 @@
         // Приветствие
         const hello = document.createElement('h2');
         hello.textContent = `Привет, ${firstName}! 👋 Добро пожаловать в магазин!`;
-        document.body.insertBefore(hello, document.getElementById('orderBtn'));
+        document.body.insertBefore(hello, document.getElementById('loggerBtn'));
       } else {
         console.log('Ошибка: SDK Telegram не найден');
       }
 
-      // Обработчик кнопки "Сделать заказ"
-      const btn = document.getElementById('orderBtn');
-      if (btn) {
-        btn.addEventListener('click', function() {
-          alert("Спасибо! Скоро форма заказа будет доступна 🚀");
-        });
-      }
+      // Обработчики всех кнопок
+      document.getElementById('loggerBtn').addEventListener('click', function() {
+        alert('Вы выбрали: Логгер температуры. Скоро появится подробное описание и возможность заказа!');
+      });
+      document.getElementById('recorderBtn').addEventListener('click', function() {
+        alert('Вы выбрали: Термописец. Скоро появится подробное описание и возможность заказа!');
+      });
+      document.getElementById('recorderSiBtn').addEventListener('click', function() {
+        alert('Вы выбрали: Термописец в Реестре СИ. Скоро появится подробное описание и возможность заказа!');
+      });
     });
   </script>
 </body>
