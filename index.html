@@ -37,6 +37,7 @@
       padding: 14px 32px;
       font-size: 18px;
       font-family: inherit;
+      font-weight: 600; /* НЕжирный шрифт */
       color: #fff;
       background: linear-gradient(90deg, #2193b0 0%, #6dd5ed 100%);
       border: none;
@@ -58,13 +59,13 @@
   </style>
 </head>
 <body>
-  <!-- Логотип -->
+  <!-- Логотип магазина слева вверху -->
   <img src="https://web.tk646.ru/wp-content/uploads/2025/06/logotip-sk-2020-scaled.png" alt="Логотип магазина" id="shopLogo" />
 
   <h1>Добро пожаловать в мой магазин!</h1>
   <p>Здесь скоро появятся товары 🛒</p>
   
-  <!-- Три отдельных кнопки -->
+  <!-- Три кнопки для разных товаров/услуг -->
   <button class="orderBtn" id="loggerBtn">Логгер температуры</button>
   <button class="orderBtn" id="recorderBtn">Термописец</button>
   <button class="orderBtn" id="recorderSiBtn">Термописец в Реестре СИ</button>
@@ -81,7 +82,7 @@
         if (initDataUnsafe && initDataUnsafe.user) {
           firstName = initDataUnsafe.user.first_name || "Гость";
         }
-        // Приветствие
+        // Приветствие (выводим перед первой кнопкой)
         const hello = document.createElement('h2');
         hello.textContent = `Привет, ${firstName}! 👋 Добро пожаловать в магазин!`;
         document.body.insertBefore(hello, document.getElementById('loggerBtn'));
@@ -89,7 +90,7 @@
         console.log('Ошибка: SDK Telegram не найден');
       }
 
-      // Обработчики всех кнопок
+      // Обработчики кнопок
       document.getElementById('loggerBtn').addEventListener('click', function() {
         alert('Вы выбрали: Логгер температуры. Скоро появится подробное описание и возможность заказа!');
       });
