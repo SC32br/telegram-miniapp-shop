@@ -12,6 +12,7 @@
       justify-content: center;
       align-items: center;
       margin: 0;
+      /* ВСЕГДА фирменная подложка! */
       background:
         linear-gradient(120deg, rgba(220,245,255,0.7), rgba(130,170,220,0.62)),
         url('https://web.tk646.ru/wp-content/uploads/2025/07/gftg0wdufx1r0_9xrxonq_d28ae17e662d4e358d5b34cfa7411caf.jpg') center/cover no-repeat;
@@ -134,7 +135,7 @@
     <button class="orderBtn" id="recorderSiBtn">Термописец в Реестре СИ</button>
   </div>
 
-  <!-- КАРТОЧКА: Логгер температуры (+ две кнопки и кнопка "Назад") -->
+  <!-- КАРТОЧКА: Логгер температуры -->
   <div id="loggerSection" style="display:none">
     <h2>Логгер температуры <span style="font-size:15px;color:#3885da;">Эскорт TH-BLE</span></h2>
     <img src="https://web.tk646.ru/wp-content/uploads/2025/07/eskort-th-ble_2234.png"
@@ -147,12 +148,13 @@
     <button class="orderBtn" id="loggerMoreBtn">Подробнее</button>
     <button class="orderBtn" id="loggerPricesBtn" style="margin-top:12px;">Цены и комплекты</button>
     <button class="backBtn" id="backBtn">
-      <svg width="24" height="24" fill="none" stroke="#3885da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;"><polyline points="15 18 9 12 15 6"/></svg>
-      Назад
+      <svg width="24" height="24" fill="none" stroke="#3885da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>Назад
     </button>
   </div>
 
-  <!-- Подробное описание -->
+  <!-- ПОДРОБНОЕ ОПИСАНИЕ -->
   <div id="loggerDetailSection" style="display:none">
     <h2>Эскорт TH-BLE — подробное описание</h2>
     <img src="https://web.tk646.ru/wp-content/uploads/2025/07/eskort-th-ble_2234.png" class="card-img" />
@@ -165,11 +167,13 @@
         <li><b>Установка:</b> легко крепится без проводов на любую поверхность</li>
         <li><b>Защита:</b> IP54 (пыль, влага, устойчивость к вибрациям)</li>
         <li><b>Настройка:</b> бесплатное мобильное приложение “Конфигуратор датчиков Эскорт” (Android/iOS)</li>
-        <li><b>Документы:</b> каждый прибор внесён в Госреестр СИ РФ; поверка только в аккредитованных лабораториях</li>
+        <li><b>Документы:</b> внесён в Госреестр СИ РФ; поверка — только аккредитованные лаборатории</li>
       </ul>
-      <div style="font-size:14px;color:#245;">Работает с IoT и M2M платформами, поддержка передачи данных на трекеры, BLE-базы, смартфоны, печать отчетов “на месте”.</div>
+      <div style="font-size:14px;color:#245;">
+        Работает с IoT и M2M платформами, поддержка передачи данных на трекеры, BLE-базы, смартфоны, печать отчетов “на месте”.
+      </div>
       <img src="https://web.tk646.ru/wp-content/uploads/2025/07/th-ble_podklyuchenie_k_datchiku.gif"
-        alt="Подключение к датчику" style="width:120px;height:auto;display:block;margin:12px auto 4px auto;border-radius:8px;">
+           alt="Подключение к датчику" style="width:120px;height:auto;display:block;margin:12px auto 4px auto;border-radius:8px;">
     </div>
     <div class="card-block" style="margin-bottom:28px;">
       <b>Технические характеристики:</b>
@@ -182,17 +186,18 @@
       </ul>
     </div>
     <button class="backBtn" id="loggerDetailBackBtn">
-      <svg width="24" height="24" fill="none" stroke="#3885da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;"><polyline points="15 18 9 12 15 6"/></svg>
-      Назад
+      <svg width="24" height="24" fill="none" stroke="#3885da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>Назад
     </button>
   </div>
 
-  <!-- Комплекты и цены -->
+  <!-- КОМПЛЕКТЫ И ЦЕНЫ -->
   <div id="loggerPricesSection" style="display:none;flex-direction:column;align-items:center;">
     <h2>Цены и комплекты</h2>
     <div class="card-block" style="margin-bottom:22px;">
       <img src="https://web.tk646.ru/wp-content/uploads/2025/07/eskort-th-ble_2231.png" alt="TH-BLE датчик"
-        style="width:105px;height:auto;float:right;margin:0 0 8px 16px;">
+           style="width:105px;height:auto;float:right;margin:0 0 8px 16px;">
       <b>Логгер Эскорт TH-BLE</b><br>
       Беспроводной датчик температуры, влажности, магнитного поля. Bluetooth BLE, мобильное приложение. <b>Без поверки</b>.
       <div style="font-size:18px;color:#248d00;margin:10px 0 6px 0;font-weight:800;"><b>7 500 ₽</b></div>
@@ -201,7 +206,7 @@
     </div>
     <div class="card-block" style="margin-bottom:22px;">
       <img src="https://web.tk646.ru/wp-content/uploads/2025/06/metrologiya-3.jpg" alt="Поверка"
-        style="width:95px;height:auto;float:right;margin:0 0 8px 16px;">
+           style="width:95px;height:auto;float:right;margin:0 0 8px 16px;">
       <b>Метрологическая поверка Эскорт TH-BLE</b><br>
       Поверка в аккредитованной лаборатории, свидетельство о поверке, все документы.
       <div style="font-size:18px;color:#248d00;margin:10px 0 6px 0;font-weight:800;"><b>2 500 ₽</b></div>
@@ -210,7 +215,7 @@
     </div>
     <div class="card-block" style="margin-bottom:22px;">
       <img src="https://web.tk646.ru/wp-content/uploads/2025/07/eskortrst.jpg" alt="С поверкой"
-        style="width:95px;height:auto;float:right;margin:0 0 8px 16px;">
+           style="width:95px;height:auto;float:right;margin:0 0 8px 16px;">
       <b>Логгер Эскорт TH-BLE с поверкой</b><br>
       Датчик с поверкой, внесён в Госреестр СИ РФ. Полный комплект документов.
       <div style="font-size:18px;color:#248d00;margin:10px 0 6px 0;font-weight:800;"><b>10 000 ₽</b></div>
@@ -218,8 +223,9 @@
       <div style="clear:both;"></div>
     </div>
     <button class="backBtn" id="loggerPricesBackBtn">
-      <svg width="24" height="24" fill="none" stroke="#3885da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;"><polyline points="15 18 9 12 15 6"/></svg>
-      Назад
+      <svg width="24" height="24" fill="none" stroke="#3885da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>Назад
     </button>
   </div>
 
@@ -233,7 +239,7 @@
       document.getElementById('loggerPricesSection').style.display = page === 'prices' ? 'flex' : 'none';
     }
     document.addEventListener('DOMContentLoaded', function() {
-      // Приветствие с именем, новая строка и эмодзи
+      // Приветствие с именем, всегда жирно, 2 строки и эмодзи
       let firstName = "Гость";
       if (window.Telegram && Telegram.WebApp) {
         Telegram.WebApp.ready();
@@ -258,7 +264,6 @@
           alert('Товар добавлен в корзину! (В будущем — полноценная корзина)');
         };
       });
-      // Остальные товары (заглушка)
       document.getElementById('recorderBtn').onclick = () => alert('Раздел "Термописец" появится скоро!');
       document.getElementById('recorderSiBtn').onclick = () => alert('Раздел "Термописец в Реестре СИ" появится скоро!');
     });
