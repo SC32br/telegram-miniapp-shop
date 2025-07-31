@@ -37,7 +37,7 @@
       padding: 14px 32px;
       font-size: 18px;
       font-family: inherit;
-      font-weight: 600; /* НЕжирный шрифт */
+      font-weight: 400; /* НЕжирный шрифт */
       color: #fff;
       background: linear-gradient(90deg, #2193b0 0%, #6dd5ed 100%);
       border: none;
@@ -56,19 +56,43 @@
       transform: translateY(-2px) scale(1.02);
       box-shadow: 0 4px 16px rgba(33,147,176,0.22);
     }
+    #mainSection, #loggerSection {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      display: flex;
+    }
   </style>
 </head>
 <body>
-  <!-- Логотип магазина слева вверху -->
+  <!-- Логотип -->
   <img src="https://web.tk646.ru/wp-content/uploads/2025/06/logotip-sk-2020-scaled.png" alt="Логотип магазина" id="shopLogo" />
 
-  <h1>Добро пожаловать в мой магазин!</h1>
-  <p>Здесь скоро появятся товары 🛒</p>
-  
-  <!-- Три кнопки для разных товаров/услуг -->
-  <button class="orderBtn" id="loggerBtn">Логгер температуры</button>
-  <button class="orderBtn" id="recorderBtn">Термописец</button>
-  <button class="orderBtn" id="recorderSiBtn">Термописец в Реестре СИ</button>
+  <!-- Главная секция -->
+  <div id="mainSection">
+    <h1>Добро пожаловать в мой магазин!</h1>
+    <p>Здесь скоро появятся товары 🛒</p>
+    <button class="orderBtn" id="loggerBtn">Логгер температуры</button>
+    <button class="orderBtn" id="recorderBtn">Термописец</button>
+    <button class="orderBtn" id="recorderSiBtn">Термописец в Реестре СИ</button>
+  </div>
+
+  <!-- Секция Логгера -->
+  <div id="loggerSection" style="display:none">
+    <h2>Логгер температуры</h2>
+    <p>Это электронное устройство для длительной и точной регистрации температуры.<br>
+      <ul style="text-align:left; max-width: 320px; margin:12px auto;">
+        <li>Диапазон измерения: <b>-50…+120°C</b></li>
+        <li>Память: <b>16 000 точек</b></li>
+        <li>Интерфейс: <b>USB, Bluetooth</b></li>
+        <li>Подходит для мониторинга хранения пищевых продуктов, медикаментов и др.</li>
+      </ul>
+    </p>
+    <button class="orderBtn" id="loggerCartBtn">Добавить в корзину</button>
+    <br>
+    <button class="orderBtn" id="backBtn" style="background:#eee;color:#333;border:1px solid #ccc;">← Назад</button>
+  </div>
 
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <script>
@@ -76,29 +100,44 @@
       // Инициализация Telegram SDK
       if (window.Telegram && Telegram.WebApp) {
         Telegram.WebApp.ready();
-        // Получить имя пользователя Telegram, если есть доступ
         const initDataUnsafe = Telegram.WebApp.initDataUnsafe;
         let firstName = "Гость";
         if (initDataUnsafe && initDataUnsafe.user) {
           firstName = initDataUnsafe.user.first_name || "Гость";
         }
-        // Приветствие (выводим перед первой кнопкой)
-        const hello = document.createElement('h2');
-        hello.textContent = `Привет, ${firstName}! 👋 Добро пожаловать в магазин!`;
-        document.body.insertBefore(hello, document.getElementById('loggerBtn'));
+        // Приветствие выводим перед первой кнопкой только если есть mainSection
+        if (document.getElementById('mainSection')) {
+          const hello = document.createElement('h2');
+          hello.textContent = `Привет, ${firstName}! 👋 Добро пожаловать в магазин!`;
+          document.getElementById('mainSection').insertBefore(hello, document.getElementById('loggerBtn'));
+        }
       } else {
         console.log('Ошибка: SDK Telegram не найден');
       }
 
-      // Обработчики кнопок
+      // Раскрытие раздела Логгера
       document.getElementById('loggerBtn').addEventListener('click', function() {
-        alert('Вы выбрали: Логгер температуры. Скоро появится подробное описание и возможность заказа!');
+        document.getElementById('mainSection').style.display = 'none';
+        document.getElementById('loggerSection').style.display = 'flex';
       });
+
+      // Кнопка "Добавить в корзину"
+      document.getElementById('loggerCartBtn').addEventListener('click', function() {
+        alert('Товар добавлен в корзину! (В будущем здесь будет полноценная корзина)');
+      });
+
+      // Кнопка "Назад"
+      document.getElementById('backBtn').addEventListener('click', function() {
+        document.getElementById('loggerSection').style.display = 'none';
+        document.getElementById('mainSection').style.display = 'flex';
+      });
+
+      // Остальные кнопки (для будущего)
       document.getElementById('recorderBtn').addEventListener('click', function() {
-        alert('Вы выбрали: Термописец. Скоро появится подробное описание и возможность заказа!');
+        alert('Раздел "Термописец" появится скоро!');
       });
       document.getElementById('recorderSiBtn').addEventListener('click', function() {
-        alert('Вы выбрали: Термописец в Реестре СИ. Скоро появится подробное описание и возможность заказа!');
+        alert('Раздел "Термописец в Реестре СИ" появится скоро!');
       });
     });
   </script>
