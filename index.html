@@ -371,26 +371,45 @@
       document.getElementById('orderModal').classList.remove('active');
       document.body.style.overflow = '';
     }
+    
+    // --- ⚠️ НАЧАЛО ОБНОВЛЕННОГО БЛОКА ⚠️ ---
     document.getElementById('orderForm').onsubmit = async function(e) {
       e.preventDefault();
       const phone = document.getElementById('orderPhone').value.trim();
       const address = document.getElementById('orderAddress').value.trim();
       const errorDiv = document.getElementById('orderError');
+
       if (!/^\+7\d{10}$/.test(phone)) {
         errorDiv.style.display = 'block';
         errorDiv.textContent = 'Введите номер в формате +7XXXXXXXXXX (10 цифр после +7)';
         return;
       }
       errorDiv.style.display = 'none';
+
       let tgUser = { username: '', first_name: '', last_name: '' };
       if (window.Telegram && Telegram.WebApp && Telegram.WebApp.initDataUnsafe && Telegram.WebApp.initDataUnsafe.user) {
         tgUser = Telegram.WebApp.initDataUnsafe.user;
       }
+
       const userMention = tgUser.username ? `@${tgUser.username}` : '';
-      const userName = tgUser.first_name ? tgUser.first_name + (tgUser.last_name ? ' ' + tgUser.last_name : '') : '';
-      let itemsText = cart.map(x => `• ${x.name} ×${x.qty}`).join('\n');
-      let msg =
-        `Новый заказ!\n${userMention} ${userName}\n${itemsText}\nТелефон: ${phone}${address ? `\nАдрес: ${address}` : ''}`;
+      const userName = tgUser.first_name ? tgUser.first_name + (tgUser.last_name ? ' ' + tgUser.last_name : '') : 'Гость';
+
+      // 1. Формируем список товаров, добавляя стоимость каждой позиции
+      let itemsText = cart.map(x =>
+        `• ${x.name} ×${x.qty} — <b>${(x.price * x.qty).toLocaleString('ru-RU')} ₽</b>`
+      ).join('\n');
+
+      // 2. Получаем общую сумму заказа
+      const totalAmount = getCartTotal().toLocaleString('ru-RU');
+
+      // 3. Собираем новое, красивое сообщение с форматированием
+      let msg = `<b>🎉 Новый заказ!</b>\n\n` +
+                `<b>Клиент:</b> ${userName} ${userMention}\n` +
+                `<b>Телефон:</b> <code>${phone}</code>\n` +
+                (address ? `<b>Адрес:</b> ${address}\n` : '') +
+                `\n<b>Состав заказа:</b>\n${itemsText}\n\n` +
+                `<b>Итого: ${totalAmount} ₽</b>`;
+      
       try {
         await fetch("https://api.telegram.org/bot8185505891:AAE2uibAdWZ71pBJ5PSiDIAElLuiAjA8P2Y/sendMessage", {
           method: "POST",
@@ -408,8 +427,11 @@
       } catch(err) {
         errorDiv.style.display = 'block';
         errorDiv.textContent = 'Ошибка отправки заказа, попробуйте позже';
+        console.error(err); // Выводим ошибку в консоль для отладки
       }
     };
+    // --- ⚠️ КОНЕЦ ОБНОВЛЕННОГО БЛОКА ⚠️ ---
+
   </script>
 </body>
 </html>
