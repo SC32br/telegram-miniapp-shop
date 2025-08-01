@@ -60,8 +60,6 @@
     #cartOrderBtn:hover {background:linear-gradient(90deg,#1e732b 0%,#20d099 100%);}
     .cart-empty {font-size:16px;color:#abacc3;margin-top:17px;}
     .cartTotal {font-size:19px;font-weight:700;color:#188031;margin:16px 0 0 0;text-align:right;display:none;}
-    
-    /* --- 🎨 НАЧАЛО НОВЫХ СТИЛЕЙ ДЛЯ ФОРМЫ ЗАКАЗА 🎨 --- */
     #orderModal {
       display:none;position:fixed;z-index:2100;left:0;top:0;width:100vw;height:100vh;
       background:rgba(33,40,60,0.21);backdrop-filter:blur(2px);
@@ -69,7 +67,7 @@
     }
     #orderModal.active { display: flex;}
     #orderForm {
-      background: linear-gradient(150deg, #fdfefe, #f4faff); /* Новый фон */
+      background: linear-gradient(150deg, #fdfefe, #f4faff);
       border-radius: 22px;
       max-width: 360px;
       width: 96%;
@@ -129,16 +127,17 @@
       background: linear-gradient(90deg, #218838 0%, #1db96a 100%);
     }
     #orderError {color:#e02437;font-size:0.99em;margin-top:8px;display:none;}
-    /* --- 🎨 КОНЕЦ НОВЫХ СТИЛЕЙ 🎨 --- */
-
     @media (max-width:540px) {
       #cartModalContent,#orderForm { max-width:98vw;}
       #cartButton { top:8px; right:8px;width:40px;height:40px;}
     }
+    h2, h3 { color: #134b6b; }
     h2#helloTitle {text-align:center;margin:32px 0 0 0;font-size:2rem;font-weight:800;line-height:1.25;letter-spacing:0.01em;color:#134b6b;white-space:pre-line;background:linear-gradient(90deg,#2193b0 0%,#2bc0e4 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
     #shopLogo {width:165px;height:auto;position:absolute;top:24px;left:24px;margin:0;border-radius:0;background:transparent;box-shadow:none;z-index:10;display:block;transition:opacity 0.3s;}
     body.inner-page #shopLogo { opacity: 0; pointer-events: none;}
-    #mainSection,#loggerSection,#loggerDetailSection,#loggerPricesSection {flex-direction:column;justify-content:center;align-items:center;width:100%;display:flex;}
+    #mainSection, #loggerSection, #loggerDetailSection, #loggerPricesSection, #recorderSection, #recorderDetailSection, #recorderPricesSection {
+        flex-direction:column;justify-content:center;align-items:center;width:100%;display:flex;
+    }
     .orderBtn {padding:14px 32px;font-size:18px;font-family:inherit;font-weight:800;color:#fff;background:linear-gradient(90deg,#2193b0 0%,#6dd5ed 100%);border:none;border-radius:8px;box-shadow:0 2px 8px rgba(33,147,176,0.15);cursor:pointer;transition:background 0.3s,transform 0.2s,box-shadow 0.2s;margin-top:28px;display:block;width:280px;margin-left:auto;margin-right:auto;letter-spacing:0.01em;}
     .orderBtn:hover {background:linear-gradient(90deg,#43cea2 0%,#185a9d 100%);transform:translateY(-2px) scale(1.02);box-shadow:0 4px 16px rgba(33,147,176,0.22);}
     .backBtn {display:inline-flex;align-items:center;padding:10px 24px;font-size:17px;font-family:inherit;font-weight:800;background:transparent;color:#3885da;border:2px solid #b7deff;border-radius:22px;box-shadow:none;cursor:pointer;margin:22px auto 0 auto;transition:background 0.16s,color 0.16s,border 0.16s,box-shadow 0.16s;gap:10px;}
@@ -197,14 +196,16 @@
   </div>
   <!-- ЛОГОТИП -->
   <img src="https://web.tk646.ru/wp-content/uploads/2025/06/logotip-sk-2020-scaled.png" alt="Логотип магазина" id="shopLogo" />
-  <!-- ГЛАВНАЯ СЕКЦИЯ -->
+  
+  <!-- === ГЛАВНАЯ СЕКЦИЯ === -->
   <div id="mainSection">
     <h2 id="helloTitle"></h2>
     <button class="orderBtn" id="loggerBtn">Логгер температуры</button>
     <button class="orderBtn" id="recorderBtn">Термописец</button>
     <button class="orderBtn" id="recorderSiBtn">Термописец в Реестре СИ</button>
   </div>
-  <!-- КАРТОЧКА -->
+  
+  <!-- === СЕКЦИЯ ЛОГГЕРА === -->
   <div id="loggerSection" style="display:none">
     <h2 style="text-align:center;">
       Логгер температуры <br>
@@ -219,13 +220,13 @@
     </p>
     <button class="orderBtn" id="loggerMoreBtn">Подробнее</button>
     <button class="orderBtn" id="loggerPricesBtn" style="margin-top:12px;">Цены и комплекты</button>
-    <button class="backBtn" id="backBtn">
+    <button class="backBtn" id="loggerBackBtn">
       <svg width="24" height="24" fill="none" stroke="#3885da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;">
         <polyline points="15 18 9 12 15 6"/>
       </svg>Назад
     </button>
   </div>
-  <!-- Подробное описание -->
+  <!-- Подробное описание логгера -->
   <div id="loggerDetailSection" style="display:none">
     <h2>Эскорт TH-BLE — подробное описание</h2>
     <img src="https://web.tk646.ru/wp-content/uploads/2025/07/eskort-th-ble_2234.png" class="card-img" alt="Эскорт TH-BLE" />
@@ -240,11 +241,6 @@
         <li><b>Настройка:</b> бесплатное мобильное приложение “Конфигуратор датчиков Эскорт” (Android/iOS)</li>
         <li><b>Документы:</b> внесён в Госреестр СИ РФ; поверка — только аккредитованные лаборатории</li>
       </ul>
-      <div style="font-size:14px;color:#245;">
-        Работает с IoT и M2M платформами, поддержка передачи данных на трекеры, BLE-базы, смартфоны, печать отчетов “на месте”.
-      </div>
-      <img src="https://web.tk646.ru/wp-content/uploads/2025/07/th-ble_podklyuchenie_k_datchiku.gif"
-           alt="Подключение к датчику" style="width:120px;height:auto;display:block;margin:12px auto 4px auto;border-radius:8px;">
     </div>
     <div class="card-block" style="margin-bottom:28px;">
       <b>Технические характеристики:</b>
@@ -252,8 +248,6 @@
         <li>Диапазон температуры: -40°С…+50°С, погрешность ±0,5°С</li>
         <li>Влажность: 1–100%, погрешность ±5%</li>
         <li>Габариты: 65×90×40 мм, масса ≤0,4 кг</li>
-        <li>Передача данных: Bluetooth BLE 4.0/5 LR</li>
-        <li>Класс защиты: IP54</li>
       </ul>
     </div>
     <button class="backBtn" id="loggerDetailBackBtn">
@@ -262,42 +256,28 @@
       </svg>Назад
     </button>
   </div>
-  <!-- Комплекты и цены -->
-  <div id="loggerPricesSection" style="display:none;flex-direction:column;align-items:center;">
+  <!-- Цены на логгер -->
+  <div id="loggerPricesSection" style="display:none;">
     <h2>Цены и комплекты</h2>
     <div class="card-block" style="margin-bottom:22px;">
       <img src="https://web.tk646.ru/wp-content/uploads/2025/07/eskort-th-ble_2231.png" alt="TH-BLE датчик"
            style="width:105px;height:auto;float:right;margin:0 0 8px 16px;background:transparent;">
       <b>Логгер Эскорт TH-BLE</b><br>
-      Беспроводной датчик температуры, влажности, магнитного поля. Bluetooth BLE, мобильное приложение. <b>Без поверки</b>.
+      Беспроводной датчик. <b>Без поверки</b>.
       <div style="font-size:18px;color:#248d00;margin:10px 0 6px 0;font-weight:800;"><b>7 500 ₽</b></div>
-      <button class="orderBtn loggerCartBtn"
-        data-id="thble" data-name="Логгер Эскорт TH-BLE" data-price="7500">
-        Добавить в корзину
+      <button class="orderBtn cartBtn" data-id="thble" data-name="Логгер Эскорт TH-BLE" data-price="7500">
+        В корзину
       </button>
       <div style="clear:both;"></div>
     </div>
     <div class="card-block" style="margin-bottom:22px;">
       <img src="https://web.tk646.ru/wp-content/uploads/2025/06/metrologiya-3.jpg" alt="Поверка"
            style="width:95px;height:auto;float:right;margin:0 0 8px 16px;">
-      <b>Метрологическая поверка Эскорт TH-BLE</b><br>
-      Поверка в аккредитованной лаборатории, свидетельство о поверке, все документы.
+      <b>Метрологическая поверка</b><br>
+      Свидетельство о поверке.
       <div style="font-size:18px;color:#248d00;margin:10px 0 6px 0;font-weight:800;"><b>2 500 ₽</b></div>
-      <button class="orderBtn loggerCartBtn"
-        data-id="verify" data-name="Метрологическая поверка TH-BLE" data-price="2500">
-        Добавить в корзину
-      </button>
-      <div style="clear:both;"></div>
-    </div>
-    <div class="card-block" style="margin-bottom:22px;">
-      <img src="https://web.tk646.ru/wp-content/uploads/2025/07/eskortrst.jpg" alt="С поверкой"
-           style="width:95px;height:auto;float:right;margin:0 0 8px 16px;">
-      <b>Логгер Эскорт TH-BLE с поверкой</b><br>
-      Датчик с поверкой, внесён в Госреестр СИ РФ. Полный комплект документов.
-      <div style="font-size:18px;color:#248d00;margin:10px 0 6px 0;font-weight:800;"><b>10 000 ₽</b></div>
-      <button class="orderBtn loggerCartBtn"
-        data-id="thble-verif" data-name="Логгер TH-BLE с поверкой" data-price="10000">
-        Добавить в корзину
+      <button class="orderBtn cartBtn" data-id="verify" data-name="Поверка TH-BLE" data-price="2500">
+        В корзину
       </button>
       <div style="clear:both;"></div>
     </div>
@@ -307,16 +287,137 @@
       </svg>Назад
     </button>
   </div>
+
+  <!-- === 🔧 НАЧАЛО НОВОЙ СЕКЦИИ: ТЕРМОПИСЕЦ 🔧 === -->
+  <div id="recorderSection" style="display:none">
+    <h2 style="text-align:center;">
+      Термописец (Термочек)<br>
+      <span style="display:block; font-size:30px; color:#3885da; font-weight:800; margin-top:8px;">ARNAVI BTS v.5</span>
+    </h2>
+    <img src="https://web.tk646.ru/wp-content/uploads/2025/07/sfg_2295-kopiya.png" alt="Термописец ARNAVI" class="card-img" />
+    <p style="max-width:350px;margin:0 auto 18px;text-align:center;font-weight:800;">
+      Комплексное решение для онлайн-контроля температуры и мгновенной печати отчёта ("термочека") на месте выгрузки.
+      <br>Без проводов, без поверки, без бюрократии.
+    </p>
+    <button class="orderBtn" id="recorderMoreBtn">Подробнее</button>
+    <button class="orderBtn" id="recorderPricesBtn" style="margin-top:12px;">Цены и комплекты</button>
+    <button class="backBtn" id="recorderBackBtn">
+      <svg width="24" height="24" fill="none" stroke="#3885da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>Назад
+    </button>
+  </div>
+  <!-- Подробное описание термописца -->
+  <div id="recorderDetailSection" style="display:none">
+    <h2>Термописец ARNAVI — подробное описание</h2>
+    <div style="display:flex; justify-content:center; align-items:flex-start; gap: 15px; flex-wrap:wrap; margin-bottom: 20px;">
+        <img src="https://web.tk646.ru/wp-content/uploads/2025/07/sfg_2295-kopiya.png" class="card-img" style="width:170px; margin:0;" alt="Комплект термописца" />
+        <img src="https://web.tk646.ru/wp-content/uploads/2025/07/chek.png" class="card-img" style="width:120px; margin:0;" alt="Пример термочека" />
+    </div>
+    <div class="card-block">
+      <b>Ключевые преимущества:</b>
+      <ul>
+        <li><b>Мгновенный термочек:</b> печать отчёта о температуре прямо на месте выгрузки для клиента или контролёра.</li>
+        <li><b>Без бюрократии:</b> датчики не требуют поверки и внесения в Госреестр СИ.</li>
+        <li><b>Простая установка:</b> модуль в прикуриватель, датчики на магнитах. Без проводов и сложного монтажа.</li>
+        <li><b>Надёжность:</b> данные хранятся во внутренней памяти и не теряются при отсутствии связи.</li>
+        <li><b>Полный контроль:</b> онлайн-мониторинг с любого устройства (ПК, смартфон).</li>
+      </ul>
+    </div>
+    <div class="card-block">
+      <b>Технические характеристики датчика ARNAVI BTS v.5:</b>
+      <ul>
+        <li>Диапазон температур: -20°C…+60°C</li>
+        <li>Канал передачи: Bluetooth BLE 4.2</li>
+        <li>Автономность: до 4 лет от батареи</li>
+        <li>Габариты: 61 x 42 x 13 мм</li>
+      </ul>
+    </div>
+     <div class="card-block" style="margin-bottom:28px; text-align:center;">
+      <b>Посмотрите видео о работе системы:</b>
+      <iframe width="340" height="215" src="https://rutube.ru/video/embed/570283471933912da8a93194ac8d30c0/" frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen style="border-radius:8px; margin-top:10px;"></iframe>
+    </div>
+    <button class="backBtn" id="recorderDetailBackBtn">
+      <svg width="24" height="24" fill="none" stroke="#3885da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>Назад
+    </button>
+  </div>
+  <!-- Цены на термописец -->
+  <div id="recorderPricesSection" style="display:none;">
+    <h2>Цены и комплекты</h2>
+    <div class="card-block" style="margin-bottom:22px;">
+      <img src="https://web.tk646.ru/wp-content/uploads/2025/07/sfg_2261-kopiya.png" alt="Комплект 1" style="width:105px;height:auto;float:right;margin:0 0 8px 16px;">
+      <b>Модуль + 1 датчик</b><br>
+      Базовый комплект для контроля одной зоны.
+      <div style="font-size:18px;color:#248d00;margin:10px 0 6px 0;font-weight:800;"><b>от 11 500 ₽</b></div>
+      <button class="orderBtn cartBtn" data-id="rec1" data-name="Термописец (Модуль + 1 датчик)" data-price="11500">
+        В корзину
+      </button>
+      <div style="clear:both;"></div>
+    </div>
+    <div class="card-block" style="margin-bottom:22px;">
+      <img src="https://web.tk646.ru/wp-content/uploads/2025/07/sfg_2287-kopiya.png" alt="Комплект 2" style="width:105px;height:auto;float:right;margin:0 0 8px 16px;">
+      <b>Модуль + 2 датчика</b><br>
+      Для контроля двух независимых зон.
+      <div style="font-size:18px;color:#248d00;margin:10px 0 6px 0;font-weight:800;"><b>от 16 000 ₽</b></div>
+      <button class="orderBtn cartBtn" data-id="rec2" data-name="Термописец (Модуль + 2 датчика)" data-price="16000">
+        В корзину
+      </button>
+      <div style="clear:both;"></div>
+    </div>
+    <div class="card-block" style="margin-bottom:22px;">
+      <img src="https://web.tk646.ru/wp-content/uploads/2025/07/sfg_2276-kopiya.png" alt="Комплект 3" style="width:105px;height:auto;float:right;margin:0 0 8px 16px;">
+      <b>Модуль + 1 датчик + принтер</b><br>
+      Комплект с возможностью печати термочеков.
+      <div style="font-size:18px;color:#248d00;margin:10px 0 6px 0;font-weight:800;"><b>от 16 500 ₽</b></div>
+      <button class="orderBtn cartBtn" data-id="rec3" data-name="Термописец (Модуль + 1 датчик + принтер)" data-price="16500">
+        В корзину
+      </button>
+      <div style="clear:both;"></div>
+    </div>
+    <div class="card-block" style="margin-bottom:22px;">
+      <img src="https://web.tk646.ru/wp-content/uploads/2025/07/sfg_2295-kopiya.png" alt="Комплект 4" style="width:105px;height:auto;float:right;margin:0 0 8px 16px;">
+      <b>Модуль + 2 датчика + принтер</b><br>
+      Максимальный комплект для печати и контроля.
+      <div style="font-size:18px;color:#248d00;margin:10px 0 6px 0;font-weight:800;"><b>от 21 000 ₽</b></div>
+      <button class="orderBtn cartBtn" data-id="rec4" data-name="Термописец (Модуль + 2 датчика + принтер)" data-price="21000">
+        В корзину
+      </button>
+      <div style="clear:both;"></div>
+    </div>
+     <div class="card-block" style="text-align:center;">
+        <b>Абонентское обслуживание: 600 ₽/мес</b><br>
+        Включает SIM, сервер и поддержку.
+     </div>
+    <button class="backBtn" id="recorderPricesBackBtn">
+      <svg width="24" height="24" fill="none" stroke="#3885da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>Назад
+    </button>
+  </div>
+  <!-- === 🔧 КОНЕЦ НОВОЙ СЕКЦИИ 🔧 === -->
+  
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <script>
     // Навигация по основным секциям
     function setPage(page) {
       document.body.className = (page === 'main') ? '' : 'inner-page';
-      document.getElementById('mainSection').style.display = page === 'main' ? 'flex' : 'none';
-      document.getElementById('loggerSection').style.display = page === 'logger' ? 'flex' : 'none';
-      document.getElementById('loggerDetailSection').style.display = page === 'detail' ? 'flex' : 'none';
-      document.getElementById('loggerPricesSection').style.display = page === 'prices' ? 'flex' : 'none';
+      const sections = ['main', 'logger', 'loggerDetail', 'loggerPrices', 'recorder', 'recorderDetail', 'recorderPrices'];
+      const sectionMap = {
+          'main': 'mainSection',
+          'logger': 'loggerSection', 'loggerDetail': 'loggerDetailSection', 'loggerPrices': 'loggerPricesSection',
+          'recorder': 'recorderSection', 'recorderDetail': 'recorderDetailSection', 'recorderPrices': 'recorderPricesSection'
+      };
+      
+      for (let s in sectionMap) {
+          document.getElementById(sectionMap[s]).style.display = 'none';
+      }
+      if (sectionMap[page]) {
+        document.getElementById(sectionMap[page]).style.display = 'flex';
+      }
     }
+
     // Корзина
     let cart = [];
     function addToCart(id, name, price) {
@@ -360,7 +461,7 @@
     }
     function removeCartItem(id) { cart = cart.filter(x => x.id !== id); updateCartCount(); renderCartModal();}
     function clearCart() { cart = []; updateCartCount();}
-    // Обработка +7 в телефоне, не даём стереть
+
     document.addEventListener('DOMContentLoaded', function() {
       // Приветствие по имени
       let firstName = "Гость";
@@ -373,16 +474,25 @@
       }
       document.getElementById('helloTitle').innerHTML =
         `👋 Привет, ${firstName}!<br>🌟 Добро пожаловать в наш магазин! 🛒`;
-      // Интерфейс разделов
+
+      // --- Навигация ---
       document.getElementById('loggerBtn').onclick = () => setPage('logger');
-      document.getElementById('loggerMoreBtn').onclick = () => setPage('detail');
-      document.getElementById('loggerPricesBtn').onclick = () => setPage('prices');
-      document.getElementById('backBtn').onclick = () => setPage('main');
+      document.getElementById('loggerMoreBtn').onclick = () => setPage('loggerDetail');
+      document.getElementById('loggerPricesBtn').onclick = () => setPage('loggerPrices');
+      document.getElementById('loggerBackBtn').onclick = () => setPage('main');
       document.getElementById('loggerDetailBackBtn').onclick = () => setPage('logger');
       document.getElementById('loggerPricesBackBtn').onclick = () => setPage('logger');
-      document.getElementById('recorderBtn').onclick = () => alert('Раздел "Термописец" появится скоро!');
+      
+      document.getElementById('recorderBtn').onclick = () => setPage('recorder');
+      document.getElementById('recorderMoreBtn').onclick = () => setPage('recorderDetail');
+      document.getElementById('recorderPricesBtn').onclick = () => setPage('recorderPrices');
+      document.getElementById('recorderBackBtn').onclick = () => setPage('main');
+      document.getElementById('recorderDetailBackBtn').onclick = () => setPage('recorder');
+      document.getElementById('recorderPricesBackBtn').onclick = () => setPage('recorder');
+      
       document.getElementById('recorderSiBtn').onclick = () => alert('Раздел "Термописец в Реестре СИ" появится скоро!');
-      document.querySelectorAll('.loggerCartBtn').forEach(btn => {
+      
+      document.querySelectorAll('.cartBtn').forEach(btn => {
         btn.onclick = function() {
           addToCart(
             btn.getAttribute('data-id'),
@@ -398,17 +508,18 @@
       document.getElementById('cartContinueBtn').onclick = closeCartModal;
       window.removeCartItem = removeCartItem;
       updateCartCount();
-      // --- Телефон: всегда +7, курсор в конец, нельзя стереть
+
       const phoneInput = document.getElementById('orderPhone');
       phoneInput.addEventListener('input', function() {
-        if (!this.value.startsWith('+7')) {
-          this.value = '+7';
-        }
+        if (!this.value.startsWith('+7')) this.value = '+7';
       });
       phoneInput.addEventListener('focus', function() {
         setTimeout(() => this.setSelectionRange(this.value.length, this.value.length), 0);
       });
+      
+      setPage('main'); // Показываем главный экран при загрузке
     });
+
     function openCartModal() {
       renderCartModal();
       document.getElementById('cartModal').classList.add('active');
@@ -418,7 +529,7 @@
       document.getElementById('cartModal').classList.remove('active');
       document.body.style.overflow = '';
     }
-    // Оформление заказа: модалка, валидация, отправка в группу
+    
     document.getElementById('cartOrderBtn').onclick = function() {
       if (cart.length === 0) return;
       document.getElementById('orderPhone').value = '+7';
@@ -433,7 +544,6 @@
       document.body.style.overflow = '';
     }
     
-    // --- ⚠️ НАЧАЛО ОБНОВЛЕННОГО БЛОКА ⚠️ ---
     document.getElementById('orderForm').onsubmit = async function(e) {
       e.preventDefault();
       const phone = document.getElementById('orderPhone').value.trim();
@@ -441,26 +551,24 @@
       const errorDiv = document.getElementById('orderError');
 
       if (!/^\+7\d{10}$/.test(phone)) {
+        errorDiv.textContent = 'Введите номер в формате +7XXXXXXXXXX';
         errorDiv.style.display = 'block';
-        errorDiv.textContent = 'Введите номер в формате +7XXXXXXXXXX (10 цифр после +7)';
         return;
       }
       errorDiv.style.display = 'none';
 
-      let tgUser = { username: '', first_name: '', last_name: '' };
-      if (window.Telegram && Telegram.WebApp && Telegram.WebApp.initDataUnsafe && Telegram.WebApp.initDataUnsafe.user) {
-        tgUser = Telegram.WebApp.initDataUnsafe.user;
-      }
-
+      let tgUser = (window.Telegram && Telegram.WebApp.initDataUnsafe && Telegram.WebApp.initDataUnsafe.user) 
+                   ? Telegram.WebApp.initDataUnsafe.user 
+                   : { username: '', first_name: 'Гость', last_name: '' };
+      
       const userMention = tgUser.username ? `@${tgUser.username}` : '';
-      const userName = tgUser.first_name ? tgUser.first_name + (tgUser.last_name ? ' ' + tgUser.last_name : '') : 'Гость';
+      const userName = `${tgUser.first_name} ${tgUser.last_name || ''}`.trim();
 
       let itemsText = cart.map(x =>
         `• ${x.name} ×${x.qty} — <b>${(x.price * x.qty).toLocaleString('ru-RU')} ₽</b>`
       ).join('\n');
       const totalAmount = getCartTotal().toLocaleString('ru-RU');
 
-      // --- 📞 ИЗМЕНЕНИЕ: Телефон теперь активная ссылка ---
       let msg = `<b>🎉 Новый заказ!</b>\n\n` +
                 `<b>Клиент:</b> ${userName} ${userMention}\n` +
                 `<b>Телефон:</b> <a href="tel:${phone}">${phone}</a>\n` +
@@ -472,24 +580,18 @@
         await fetch("https://api.telegram.org/bot8185505891:AAE2uibAdWZ71pBJ5PSiDIAElLuiAjA8P2Y/sendMessage", {
           method: "POST",
           headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({
-            chat_id: -1002513898844,
-            text: msg,
-            parse_mode: "HTML"
-          })
+          body: JSON.stringify({ chat_id: -1002513898844, text: msg, parse_mode: "HTML" })
         });
-        alert('Спасибо за заказ! Ваши данные отправлены менеджеру в Telegram!');
+        alert('Спасибо за заказ! Ваши данные отправлены менеджеру!');
         clearCart();
         closeCartModal();
         closeOrderModal();
       } catch(err) {
+        errorDiv.textContent = 'Ошибка отправки, попробуйте позже';
         errorDiv.style.display = 'block';
-        errorDiv.textContent = 'Ошибка отправки заказа, попробуйте позже';
-        console.error(err); // Выводим ошибку в консоль для отладки
+        console.error(err);
       }
     };
-    // --- ⚠️ КОНЕЦ ОБНОВЛЕННОГО БЛОКА ⚠️ ---
-
   </script>
 </body>
 </html>
