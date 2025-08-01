@@ -60,16 +60,77 @@
     #cartOrderBtn:hover {background:linear-gradient(90deg,#1e732b 0%,#20d099 100%);}
     .cart-empty {font-size:16px;color:#abacc3;margin-top:17px;}
     .cartTotal {font-size:19px;font-weight:700;color:#188031;margin:16px 0 0 0;text-align:right;display:none;}
-    /* --- Модалка заказа --- */
-    #orderModal {display:none;position:fixed;z-index:2100;left:0;top:0;width:100vw;height:100vh;background:rgba(33,40,60,0.21);backdrop-filter:blur(2px);align-items:center;justify-content:center;}
+    
+    /* --- 🎨 НАЧАЛО НОВЫХ СТИЛЕЙ ДЛЯ ФОРМЫ ЗАКАЗА 🎨 --- */
+    #orderModal {
+      display:none;position:fixed;z-index:2100;left:0;top:0;width:100vw;height:100vh;
+      background:rgba(33,40,60,0.21);backdrop-filter:blur(2px);
+      align-items:center;justify-content:center;
+    }
     #orderModal.active { display: flex;}
-    #orderForm {background:#fff;border-radius:19px;max-width:340px;width:96%;padding:34px 20px 23px 20px;box-shadow:0 6px 40px #1b233866;text-align:center;position:relative;}
-    #orderModalClose {position:absolute;top:6px;right:10px;background:none;border:none;font-size:28px;color:#dd2856;font-weight:700;cursor:pointer;z-index:2;}
+    #orderForm {
+      background: linear-gradient(150deg, #fdfefe, #f4faff); /* Новый фон */
+      border-radius: 22px;
+      max-width: 360px;
+      width: 96%;
+      padding: 30px 25px 25px 25px;
+      box-shadow: 0 10px 45px rgba(22, 102, 168, 0.25);
+      text-align: center;
+      position: relative;
+      border: 1px solid #e9f5ff;
+    }
+    #orderForm h3 {
+      margin-top: 0;
+      margin-bottom: 24px;
+      font-size: 1.3em;
+      color: #1a7ab9;
+      font-weight: 800;
+    }
+    #orderModalClose {
+      position:absolute;top:6px;right:10px;background:none;border:none;
+      font-size:28px;color:#dd2856;font-weight:700;cursor:pointer;z-index:2;
+    }
     #orderModalClose:hover {color:#ff3b4b;}
-    #orderForm input {width:100%;margin-bottom:13px;padding:11px;font-size:1em;border-radius:10px;border:1.5px solid #d0e6f6;box-sizing:border-box;outline:none;}
+    #orderForm input {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 14px;
+      font-size: 1.05em;
+      border-radius: 12px;
+      border: 1.5px solid #d0e6f6;
+      box-sizing: border-box;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    #orderForm input:focus {
+      border-color: #50bafc;
+      box-shadow: 0 0 8px rgba(80, 186, 252, 0.3);
+    }
     #orderPhone {border-color:#7be2ff;}
     #phoneHint {font-size:0.98em;color:#539eca;margin:-9px 0 10px 0;text-align:left;}
+    #orderSubmitBtn {
+      width: 100%;
+      padding: 14px 20px;
+      font-size: 1.1em;
+      font-weight: 800;
+      color: #fff;
+      background: linear-gradient(90deg, #28a745 0%, #21d375 100%);
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+      letter-spacing: 0.02em;
+    }
+    #orderSubmitBtn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(40, 167, 69, 0.4);
+      background: linear-gradient(90deg, #218838 0%, #1db96a 100%);
+    }
     #orderError {color:#e02437;font-size:0.99em;margin-top:8px;display:none;}
+    /* --- 🎨 КОНЕЦ НОВЫХ СТИЛЕЙ 🎨 --- */
+
     @media (max-width:540px) {
       #cartModalContent,#orderForm { max-width:98vw;}
       #cartButton { top:8px; right:8px;width:40px;height:40px;}
@@ -126,7 +187,7 @@
   <div id="orderModal">
     <form id="orderForm">
       <button type="button" id="orderModalClose" title="Закрыть">&times;</button>
-      <h3 style="margin-bottom:21px;font-size:1.19em;color:#2193b0;font-weight:800;">Оформление заказа</h3>
+      <h3>Оформление заказа</h3>
       <input type="tel" id="orderPhone" value="+7" maxlength="12" required>
       <div id="phoneHint">Формат: <b>+7XXXXXXXXXX</b></div>
       <input type="text" id="orderAddress" placeholder="Адрес доставки (необязательно)">
@@ -394,18 +455,15 @@
       const userMention = tgUser.username ? `@${tgUser.username}` : '';
       const userName = tgUser.first_name ? tgUser.first_name + (tgUser.last_name ? ' ' + tgUser.last_name : '') : 'Гость';
 
-      // 1. Формируем список товаров, добавляя стоимость каждой позиции
       let itemsText = cart.map(x =>
         `• ${x.name} ×${x.qty} — <b>${(x.price * x.qty).toLocaleString('ru-RU')} ₽</b>`
       ).join('\n');
-
-      // 2. Получаем общую сумму заказа
       const totalAmount = getCartTotal().toLocaleString('ru-RU');
 
-      // 3. Собираем новое, красивое сообщение с форматированием
+      // --- 📞 ИЗМЕНЕНИЕ: Телефон теперь активная ссылка ---
       let msg = `<b>🎉 Новый заказ!</b>\n\n` +
                 `<b>Клиент:</b> ${userName} ${userMention}\n` +
-                `<b>Телефон:</b> <code>${phone}</code>\n` +
+                `<b>Телефон:</b> <a href="tel:${phone}">${phone}</a>\n` +
                 (address ? `<b>Адрес:</b> ${address}\n` : '') +
                 `\n<b>Состав заказа:</b>\n${itemsText}\n\n` +
                 `<b>Итого: ${totalAmount} ₽</b>`;
