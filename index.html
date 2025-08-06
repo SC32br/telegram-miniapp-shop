@@ -40,6 +40,18 @@
       border-radius:50%;padding:0 3px; text-align:center;display:none;font-weight:bold;
       box-shadow:0 2px 6px #d20b2d42;
     }
+    /* === КНОПКА НАЗАД === */
+    #universalBackButton {
+        position: fixed; top: 24px; left: 24px; z-index: 1000;
+        display: none; align-items:center; justify-content:center; width:54px; height:54px;
+        background: rgba(255,255,255,0.85);
+        border: 1px solid #dbe9f7; border-radius: 50%;
+        box-shadow: 0 4px 14px rgba(29, 112, 184, 0.18);
+        cursor: pointer; padding: 0; transition: all 0.18s;
+    }
+    #universalBackButton:hover { transform: scale(1.05); box-shadow: 0 6px 18px rgba(29, 112, 184, 0.25); }
+    #universalBackButton svg { width: 26px; height: 26px; }
+
     /* === МОДАЛЬНЫЕ ОКНА === */
     .modal-overlay {
       display:none;position:fixed;z-index:2000;left:0;top:0;width:100vw;height:100vh;
@@ -103,6 +115,7 @@
     @media (max-width:540px) {
       .modal-content,#orderForm { max-width:98vw;}
       #cartButton { top:8px; right:8px;width:40px;height:40px;}
+      #universalBackButton { top:8px; left:8px;width:40px;height:40px;}
     }
     h2, h3 { color: #134b6b; text-align: center;}
     h2#helloTitle {text-align:center;margin:32px 0 0 0;font-size:2rem;font-weight:800;line-height:1.25;letter-spacing:0.01em;color:#134b6b;white-space:pre-line;background:linear-gradient(90deg,var(--gradient-blue-start) 0%,var(--gradient-blue-end) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
@@ -176,7 +189,7 @@
         border: none;
     }
     
-    /* --- ИЗМЕНЕНО: Стили для нового модального окна "Спасибо за заказ" --- */
+    /* --- Стили для модального окна "Спасибо за заказ" --- */
     #successModal .modal-content { padding-top: 25px; padding-bottom: 25px; }
     #successIcon { color: var(--success-green); width: 60px; height: 60px; margin-bottom: 15px; }
     #successOkBtn {
@@ -189,7 +202,15 @@
   </style>
 </head>
 <body>
-  <!-- НОВАЯ ИКОНКА КОРЗИНЫ -->
+  <!-- УНИВЕРСАЛЬНАЯ КНОПКА "НАЗАД" -->
+  <button id="universalBackButton" title="Назад">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#3885da">
+      <path d="M0 0h24v24H0z" fill="none"/>
+      <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+    </svg>
+  </button>
+  
+  <!-- ИКОНКА КОРЗИНЫ -->
   <button id="cartButton" title="Корзина">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
     <span id="cartCount">0</span>
@@ -228,7 +249,6 @@
     </div>
   </div>
 
-  <!-- --- ИЗМЕНЕНО: Добавлено новое модальное окно "Спасибо за заказ" --- -->
   <div id="successModal" class="modal-overlay">
     <div class="modal-content">
         <svg id="successIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
@@ -237,8 +257,7 @@
         <button id="successOkBtn">Отлично!</button>
     </div>
   </div>
-
-
+  
   <!-- ЛОГОТИП -->
   <img src="https://web.tk646.ru/wp-content/uploads/2025/06/logotip-sk-2020-scaled.png" alt="Логотип магазина" id="shopLogo" />
   
@@ -246,8 +265,9 @@
   <div id="mainSection" class="page-section">
     <h2 id="helloTitle"></h2>
     <button class="orderBtn" id="loggerBtn">Логгер температуры</button>
-    <button class="orderBtn" id="recorderBtn">Термописец</button>
-    <button class="orderBtn" id="recorderSiBtn">Термописец в Реестре СИ</button>
+    <button class="orderBtn" id="recorderBtn">Термописец для товаров с температурным режимом  -5°C…+50°C</button>
+    <button class="orderBtn" id="recorderSiBtn">Термописец для товаров с температурным режимом -40°C…+50°C</button>
+    <button class="orderBtn" id="recorderSiVerifiedBtn">Термописец для фарм и вет препаратов. Юридически значимый контроль</button>
   </div>
   
   <div id="loggerSection" class="page-section">
@@ -275,7 +295,7 @@
     <div class="card-block product-card" style="margin-bottom:22px;"><img src="https://web.tk646.ru/wp-content/uploads/2025/07/eskortrst.jpg" alt="С поверкой" style="width:95px;height:auto;float:right;margin:0 0 8px 16px;" class="zoomable-img"><b>Логгер с поверкой</b><br>Датчик с поверкой (в Реестре СИ).<div style="font-size:18px;color:#248d00;margin:10px 0 6px 0;font-weight:800;"><b>10 000 ₽</b></div><button class="orderBtn productCartBtn" data-id="thble-verif" data-name="Логгер TH-BLE с поверкой" data-price="10000">В корзину</button><div style="clear:both;"></div></div>
     <button class="backBtn" id="loggerPricesBackBtn"><svg width="24" height="24" fill="none" stroke="var(--primary-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;"><polyline points="15 18 9 12 15 6"/></svg>Назад</button>
   </div>
-
+  
   <div id="recorderSection" class="page-section">
     <h2>Термописец (Термочек)<br><span style="font-size:30px; color:var(--primary-blue); font-weight:800; margin-top:8px;">ARNAVI BTS v.5</span></h2>
     <img src="https://web.tk646.ru/wp-content/uploads/2025/07/sfg_2295-kopiya.png" alt="Термописец ARNAVI" class="card-img zoomable-img" />
@@ -289,7 +309,7 @@
     <h2>Термописец ARNAVI — подробное описание</h2>
     <div style="display:flex; justify-content:center; align-items:center; gap: 15px; flex-wrap:wrap; margin-bottom: 20px;"><img src="https://web.tk646.ru/wp-content/uploads/2025/07/sfg_2295-kopiya.png" class="card-img zoomable-img" style="width:170px; margin:0;" alt="Комплект термописца" /><img src="https://web.tk646.ru/wp-content/uploads/2025/07/chek.png" class="card-img zoomable-img" style="width:120px; margin:0;" alt="Пример термочека" /></div>
     <div class="card-block"><b>Ключевые преимущества:</b><ul><li><b>Мгновенный термочек:</b> печать отчёта на месте выгрузки.</li><li><b>Без бюрократии:</b> датчики не требуют поверки и внесения в Госреестр СИ.</li><li><b>Простая установка:</b> модуль в прикуриватель, датчики на магнитах.</li></ul></div>
-    <div class="card-block"><b>Технические характеристики ARNAVI BTS v.5</b><ul><li>Габариты: 61 x 42 x 13 мм, масса — 30 г</li><li>BLE 4.2, iBeacon, контроль цепи, магнитный датчик</li><li>Диапазон температур: -20°C…+60°C</li><li>Время работы: до 1500 дней от батареи</li><li>Морозильник: 400 дней, холодильник: 700 дней</li></ul></div>
+    <div class="card-block"><b>Технические характеристики ARNAVI BTS v.5</b><ul><li>Габариты: 61 x 42 x 13 мм, масса — 30 г</li><li>Диапазон температур: -5°C…+50°C</li><li>Время работы:</li><li>Морозилка -5 °C... -0°C-400 дней</li><li>Холодильник 0 °C... +5°C-700 дней</li><li>Комната +5 °C... +25°C-1 500 дней</li></ul></div>
     <div class="card-block" style="text-align:center;"><b>Посмотрите видео о работе системы:</b>
       <iframe src="https://rutube.ru/video/embed/570283471933912da8a93194ac8d30c0/" frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
     </div>
@@ -310,22 +330,20 @@
   <div id="recorderSiSection" class="page-section">
     <h2>Термописец в Реестре СИ<br><span style="font-size:24px; color:#1a7ab9; font-weight:800; margin-top:8px;">Юридически значимый контроль</span></h2>
     <img src="https://web.tk646.ru/wp-content/uploads/2025/07/sfg_2327-kopiya.png" alt="Термописец в Реестре СИ" class="card-img zoomable-img" />
-    <p style="max-width:350px;margin:0 auto 18px;text-align:center;font-weight:800;">Официальное решение для фармацевтики. Датчики **внесены в Госреестр СИ РФ** и проходят **метрологическую поверку**.</p>
+    <p style="max-width:350px;margin:0 auto 18px;text-align:center;font-weight:800;">Контроль температуры и мгновенная печать отчёта ("термочека"). Датчики <b>внесены в Госреестр СИ РФ</b> Номер в ГРСИ РФ: <b>87325-22</b>.</p>
     <button class="orderBtn" id="recorderSiMoreBtn">Подробнее</button>
     <button class="orderBtn" id="recorderSiPricesBtn" style="margin-top:12px;">Цены и комплекты</button>
     <button class="backBtn" id="recorderSiBackBtn"><svg width="24" height="24" fill="none" stroke="var(--primary-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;"><polyline points="15 18 9 12 15 6"/></svg>Назад</button>
   </div>
   
   <div id="recorderSiDetailSection" class="page-section">
-    <h2>Термописец в Реестре СИ — Подробности</h2>
+    <h2>Термописец (Термочек) — ЭСКОРТ TH-BLE</h2>
     <div style="display:flex; justify-content:center; align-items:center; gap: 15px; flex-wrap:wrap; margin-bottom: 20px;">
       <img src="https://web.tk646.ru/wp-content/uploads/2025/07/sfg_2327-kopiya.png" class="card-img zoomable-img" style="width:170px; margin:0;" alt="Комплект термописца СИ" />
       <img src="https://web.tk646.ru/wp-content/uploads/2025/07/chek.png" class="card-img zoomable-img" style="width:120px; margin:0;" alt="Пример термочека" />
     </div>
-    <div class="card-block"><b>Датчик ЭСКОРТ TH-BLE</b><ul><li>Диапазон температуры: -40…+50°C</li><li>Погрешность: ±0,5°C (-30…+50°C), ±1,0°C (-40…-30°C)</li><li>Влажность: 1–100%, погрешность ±5%</li><li>Время работы от батареи: не менее 2 лет</li><li>Стандарт Bluetooth: BLE 4.0/5 LR, дальность до 200 м</li><li>Степень защиты: IP54</li><li>Размеры: 105×95×40 мм</li><li>Масса: ≤0,4 кг</li><li>Внесён в Госреестр СИ РФ, проходит метрологическую поверку</li></ul></div>
-    <div class="card-block"><b>Модуль мониторинга</b><ul><li>Передача данных на сервер по GPRS</li><li>Встроенная энергонезависимая память</li><li>Работа при перебоях связи — автоматическая выгрузка после восстановления</li><li>Простое подключение: 12/24В через прикуриватель</li><li>Мобильная установка без вмешательства в электрику</li></ul></div>
-    <div class="card-block"><b>Программное обеспечение и поверка</b><ul><li>Внесено в Реестр российского ПО</li><li>Формирование и печать температурных отчётов (термочек)</li><li>Веб-интерфейс и мобильное приложение (Android/iOS/ПК)</li><li>Онлайн-мониторинг, аналитика, уведомления</li><li>Интеграция с внешними учетными системами (1С, WMS и др.)</li><li>Гибкое управление пользователями и объектами</li><li>Метрологическая поверка проводится аккредитованными лабораториями</li><li>Гарантия юридической значимости данных</li></ul></div>
-    <div class="card-block" style="text-align:center;"><b>Посмотрите видео о решении:</b>
+    <div class="card-block"><b>Датчик ЭСКОРТ TH-BLE</b><ul><li>Диапазон температуры: -40…+50°C</li><li>Погрешность: ±0,5°C (-30…+50°C), ±1,0°C (-40…-30°C)</li><li>Влажность: 1–100%, погрешность ±5%</li><li>Время работы от батареи: не менее 2 лет</li><li>Стандарт Bluetooth: BLE 4.0/5 LR, дальность до 200 м</li><li>Степень защиты: IP54</li><li>Размеры: 105×95×40 мм</li><li>Масса: ≤0,4 кг</li><li>Внесён в Госреестр СИ РФ, при необходимости может быть метрологически поверен (цены в разделе "Термописец для фарм и вет препаратов")</li></ul></div>
+        <div class="card-block" style="text-align:center;"><b>Посмотрите видео о решении:</b>
       <iframe src="https://rutube.ru/video/embed/d809805bc4af577428d483c99104e97d/" frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
     </div>
     <button class="backBtn" id="recorderSiDetailBackBtn"><svg width="24" height="24" fill="none" stroke="var(--primary-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;"><polyline points="15 18 9 12 15 6"/></svg>Назад</button>
@@ -336,11 +354,48 @@
     <div class="search-wrapper"><input type="text" id="recorderSiSearchInput" class="search-input" placeholder="Найти, например, 'с поверкой'..."></div>
     <div class="card-block product-card" style="margin-bottom:22px;"><img src="https://web.tk646.ru/wp-content/uploads/2025/07/sfg_2310-kopiya.png" alt="Комплект 1 СИ" style="width:105px;height:auto;float:right;margin:0 0 8px 16px;" class="zoomable-img"><b>Модуль + 1 датчик</b><div style="font-size:18px;color:#248d00;margin:10px 0 6px 0;font-weight:800;"><b>от 14 500 ₽</b></div><button class="orderBtn productCartBtn" data-id="recSi1" data-name="Термописец СИ (Модуль + 1 датчик с поверкой)" data-price="14500">В корзину</button><div style="clear:both;"></div></div>
     <div class="card-block product-card" style="margin-bottom:22px;"><img src="https://web.tk646.ru/wp-content/uploads/2025/07/sfg_2323-kopiya.png" alt="Комплект 2 СИ" style="width:105px;height:auto;float:right;margin:0 0 8px 16px;" class="zoomable-img"><b>Модуль + 2 датчика</b><div style="font-size:18px;color:#248d00;margin:10px 0 6px 0;font-weight:800;"><b>от 22 000 ₽</b></div><button class="orderBtn productCartBtn" data-id="recSi2" data-name="Термописец СИ (Модуль + 2 датчика с поверкой)" data-price="22000">В корзину</button><div style="clear:both;"></div></div>
-    <div class="card-block product-card" style="margin-bottom:22px;"><img src="https://web.tk646.ru/wp-content/uploads/2025/07/sfg_2314-kopiya.jpg" alt="Комплект 3 СИ" style="width:105px;height:auto;float:right;margin:0 0 8px 16px;" class="zoomable-img"><b>Модуль + 1 датчик + принтер</b><div style="font-size:18px;color:#248d00;margin:10px 0 6px 0;font-weight:800;"><b>от 19 500 ₽</b></div><button class="orderBtn productCartBtn" data-id="recSi3" data-name="Термописец СИ (Модуль + 1 датчик + принтер)" data-price="19500">В корзину</button><div style="clear:both;"></div></div>
+    <div class="card-block product-card" style="margin-bottom:22px;"><img src="https://web.tk646.ru/wp-content/uploads/2025/08/sfg_2314-kopiya-e1754298100956.png" alt="Комплект 3 СИ" style="width:105px;height:auto;float:right;margin:0 0 8px 16px;" class="zoomable-img"><b>Модуль + 1 датчик + принтер</b><div style="font-size:18px;color:#248d00;margin:10px 0 6px 0;font-weight:800;"><b>от 19 500 ₽</b></div><button class="orderBtn productCartBtn" data-id="recSi3" data-name="Термописец СИ (Модуль + 1 датчик + принтер)" data-price="19500">В корзину</button><div style="clear:both;"></div></div>
     <div class="card-block product-card" style="margin-bottom:22px;"><img src="https://web.tk646.ru/wp-content/uploads/2025/07/sfg_2327-kopiya.png" alt="Комплект 4 СИ" style="width:105px;height:auto;float:right;margin:0 0 8px 16px;" class="zoomable-img"><b>Модуль + 2 датчика + принтер</b><div style="font-size:18px;color:#248d00;margin:10px 0 6px 0;font-weight:800;"><b>от 27 000 ₽</b></div><button class="orderBtn productCartBtn" data-id="recSi4" data-name="Термописец СИ (Модуль + 2 датчика + принтер)" data-price="27000">В корзину</button><div style="clear:both;"></div></div>
     <div class="card-block" style="text-align:center;"><b>Абонентское обслуживание: 600 ₽/мес</b><br>Включает SIM, сервер и поддержку.</div>
     <button class="backBtn" id="recorderSiPricesBackBtn"><svg width="24" height="24" fill="none" stroke="var(--primary-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;"><polyline points="15 18 9 12 15 6"/></svg>Назад</button>
   </div>
+  
+  <!-- РАЗДЕЛ "ТЕРМОПИСЕЦ ДЛЯ ФАРМ И ВЕТ ПРЕПАРАТОВ" -->
+  <div id="recorderSiVerifiedSection" class="page-section">
+    <h2>Термописец в Реестре СИ поверенный<br><span style="font-size:24px; color:#1a7ab9; font-weight:800; margin-top:8px;">Юридически значимый контроль (поверенный)</span></h2>
+    <img src="https://web.tk646.ru/wp-content/uploads/2025/07/sfg_2327-kopiya.png" alt="Термописец в Реестре СИ поверенный" class="card-img zoomable-img" />
+    <p style="max-width:350px;margin:0 auto 18px;text-align:center;font-weight:800;">Официальное решение для фармацевтики. Датчики <b>внесены в Госреестр СИ РФ</b> и проходят <b>метрологическую поверку. Номер в ГРСИ РФ: 87325-22</b>.</p>
+    <button class="orderBtn" id="recorderSiVerifiedMoreBtn">Подробнее</button>
+    <button class="orderBtn" id="recorderSiVerifiedPricesBtn" style="margin-top:12px;">Цены и комплекты</button>
+    <button class="backBtn" id="recorderSiVerifiedBackBtn"><svg width="24" height="24" fill="none" stroke="var(--primary-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;"><polyline points="15 18 9 12 15 6"/></svg>Назад</button>
+  </div>
+  
+  <div id="recorderSiVerifiedDetailSection" class="page-section">
+    <h2>Термописец в Реестре СИ (поверенный) — Подробности</h2>
+    <div style="display:flex; justify-content:center; align-items:center; gap: 15px; flex-wrap:wrap; margin-bottom: 20px;">
+      <img src="https://web.tk646.ru/wp-content/uploads/2025/07/sfg_2327-kopiya.png" class="card-img zoomable-img" style="width:170px; margin:0;" alt="Комплект термописца СИ" />
+      <img src="https://web.tk646.ru/wp-content/uploads/2025/07/chek.png" class="card-img zoomable-img" style="width:120px; margin:0;" alt="Пример термочека" />
+    </div>
+    <div class="card-block"><b>Датчик ЭСКОРТ TH-BLE</b><ul><li>Диапазон температуры: -40…+50°C</li><li>Погрешность: ±0,5°C (-30…+50°C), ±1,0°C (-40…-30°C)</li><li>Влажность: 1–100%, погрешность ±5%</li><li>Время работы от батареи: не менее 2 лет</li><li>Стандарт Bluetooth: BLE 4.0/5 LR, дальность до 200 м</li><li>Степень защиты: IP54</li><li>Размеры: 105×95×40 мм</li><li>Масса: ≤0,4 кг</li><li>Внесён в Госреестр СИ РФ, проходит метрологическую поверку</li></ul></div>
+    <div class="card-block"><b>Модуль мониторинга</b><ul><li>Передача данных на сервер по GPRS</li><li>Встроенная энергонезависимая память</li><li>Работа при перебоях связи — автоматическая выгрузка после восстановления</li><li>Простое подключение: 12/24В через прикуриватель</li><li>Мобильная установка без вмешательства в электрику</li></ul></div>
+    <div class="card-block"><b>Программное обеспечение и поверка</b><ul><li>Внесено в Реестр российского ПО</li><li>Формирование и печать температурных отчётов (термочек)</li><li>Веб-интерфейс и мобильное приложение (Android/iOS/ПК)</li><li>Онлайн-мониторинг, аналитика, уведомления</li><li>Интеграция с внешними учетными системами (1С, WMS и др.)</li><li>Гибкое управление пользователями и объектами</li><li>Метрологическая поверка проводится аккредитованными лабораториями</li><li>Гарантия юридической значимости данных</li></ul></div>
+    <div class="card-block" style="text-align:center;"><b>Посмотрите видео о решении:</b>
+      <iframe src="https://rutube.ru/video/embed/d809805bc4af577428d483c99104e97d/" frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+    </div>
+    <button class="backBtn" id="recorderSiVerifiedDetailBackBtn"><svg width="24" height="24" fill="none" stroke="var(--primary-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;"><polyline points="15 18 9 12 15 6"/></svg>Назад</button>
+  </div>
+
+  <div id="recorderSiVerifiedPricesSection" class="page-section">
+    <h2>Цены и комплекты (Реестр СИ поверенный)</h2>
+    <div class="search-wrapper"><input type="text" id="recorderSiVerifiedSearchInput" class="search-input" placeholder="Найти, например, 'с поверкой'..."></div>
+    <div class="card-block product-card" style="margin-bottom:22px;"><img src="https://web.tk646.ru/wp-content/uploads/2025/07/sfg_2310-kopiya.png" alt="Комплект 1 СИ" style="width:105px;height:auto;float:right;margin:0 0 8px 16px;" class="zoomable-img"><b>Модуль + 1 датчик с поверкой</b><div style="font-size:18px;color:#248d00;margin:10px 0 6px 0;font-weight:800;"><b>от 17 000 ₽</b></div><button class="orderBtn productCartBtn" data-id="recSiVer1" data-name="Термописец СИ поверенный (1 датчик)" data-price="17000">В корзину</button><div style="clear:both;"></div></div>
+    <div class="card-block product-card" style="margin-bottom:22px;"><img src="https://web.tk646.ru/wp-content/uploads/2025/07/sfg_2323-kopiya.png" alt="Комплект 2 СИ" style="width:105px;height:auto;float:right;margin:0 0 8px 16px;" class="zoomable-img"><b>Модуль + 2 датчика с поверкой</b><div style="font-size:18px;color:#248d00;margin:10px 0 6px 0;font-weight:800;"><b>от 27 000 ₽</b></div><button class="orderBtn productCartBtn" data-id="recSiVer2" data-name="Термописец СИ поверенный (2 датчика)" data-price="27000">В корзину</button><div style="clear:both;"></div></div>
+    <div class="card-block product-card" style="margin-bottom:22px;"><img src="https://web.tk646.ru/wp-content/uploads/2025/08/sfg_2314-kopiya-e1754298100956.png" alt="Комплект 3 СИ" style="width:105px;height:auto;float:right;margin:0 0 8px 16px;" class="zoomable-img"><b>Модуль + 1 датчик с поверкой + принтер</b><div style="font-size:18px;color:#248d00;margin:10px 0 6px 0;font-weight:800;"><b>от 22 000 ₽</b></div><button class="orderBtn productCartBtn" data-id="recSiVer3" data-name="Термописец СИ поверенный (1 датчик + принтер)" data-price="22000">В корзину</button><div style="clear:both;"></div></div>
+    <div class="card-block product-card" style="margin-bottom:22px;"><img src="https://web.tk646.ru/wp-content/uploads/2025/07/sfg_2327-kopiya.png" alt="Комплект 4 СИ" style="width:105px;height:auto;float:right;margin:0 0 8px 16px;" class="zoomable-img"><b>Модуль + 2 датчика с поверкой + принтер</b><div style="font-size:18px;color:#248d00;margin:10px 0 6px 0;font-weight:800;"><b>от 32 000 ₽</b></div><button class="orderBtn productCartBtn" data-id="recSiVer4" data-name="Термописец СИ поверенный (2 датчика + принтер)" data-price="32000">В корзину</button><div style="clear:both;"></div></div>
+    <div class="card-block" style="text-align:center;"><b>Абонентское обслуживание: 600 ₽/мес</b><br>Включает SIM, сервер и поддержку.</div>
+    <button class="backBtn" id="recorderSiVerifiedPricesBackBtn"><svg width="24" height="24" fill="none" stroke="var(--primary-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;"><polyline points="15 18 9 12 15 6"/></svg>Назад</button>
+  </div>
+
   
   <!-- JAVASCRIPT -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -348,12 +403,34 @@
     try {
       let tgUser = {};
       let cart = [];
+      let pageHistory = ['main']; // Стек для истории навигации
 
-      const setPage = (page) => {
+      const setPage = (page, isBack = false) => {
         document.body.className = (page === 'main') ? '' : 'inner-page';
         document.querySelectorAll('.page-section').forEach(s => s.style.display = 'none');
         const activeSection = document.getElementById(page + 'Section');
         if (activeSection) activeSection.style.display = 'flex';
+        
+        // Управление видимостью кнопки "Назад"
+        const backBtn = document.getElementById('universalBackButton');
+        if (page === 'main') {
+            backBtn.style.display = 'none';
+        } else {
+            backBtn.style.display = 'flex';
+        }
+
+        // Обновление истории навигации
+        if (!isBack) {
+            pageHistory.push(page);
+        }
+      };
+
+      const goBack = () => {
+          if (pageHistory.length > 1) {
+              pageHistory.pop(); // Удаляем текущую страницу
+              const prevPage = pageHistory[pageHistory.length - 1]; // Получаем предыдущую
+              setPage(prevPage, true); // Переходим без добавления в историю
+          }
       };
 
       const updateCartCount = () => {
@@ -439,7 +516,16 @@
           if(helloTitle) helloTitle.innerHTML = `Привет, ${firstName}!<br> Добро пожаловать!<br> 🛒`;
         }
 
-        const navMap = { 'loggerBtn': 'logger', 'loggerMoreBtn': 'loggerDetail', 'loggerPricesBtn': 'loggerPrices', 'loggerBackBtn': 'main', 'loggerDetailBackBtn': 'logger', 'loggerPricesBackBtn': 'logger', 'recorderBtn': 'recorder', 'recorderMoreBtn': 'recorderDetail', 'recorderPricesBtn': 'recorderPrices', 'recorderBackBtn': 'main', 'recorderDetailBackBtn': 'recorder', 'recorderPricesBackBtn': 'recorder', 'recorderSiBtn': 'recorderSi', 'recorderSiMoreBtn': 'recorderSiDetail', 'recorderSiPricesBtn': 'recorderSiPrices', 'recorderSiBackBtn': 'main', 'recorderSiDetailBackBtn': 'recorderSi', 'recorderSiPricesBackBtn': 'recorderSi' };
+        const navMap = { 
+            'loggerBtn': 'logger', 'loggerMoreBtn': 'loggerDetail', 'loggerPricesBtn': 'loggerPrices', 
+            'loggerBackBtn': 'main', 'loggerDetailBackBtn': 'logger', 'loggerPricesBackBtn': 'logger', 
+            'recorderBtn': 'recorder', 'recorderMoreBtn': 'recorderDetail', 'recorderPricesBtn': 'recorderPrices', 
+            'recorderBackBtn': 'main', 'recorderDetailBackBtn': 'recorder', 'recorderPricesBackBtn': 'recorder', 
+            'recorderSiBtn': 'recorderSi', 'recorderSiMoreBtn': 'recorderSiDetail', 'recorderSiPricesBtn': 'recorderSiPrices', 
+            'recorderSiBackBtn': 'main', 'recorderSiDetailBackBtn': 'recorderSi', 'recorderSiPricesBackBtn': 'recorderSi',
+            'recorderSiVerifiedBtn': 'recorderSiVerified', 'recorderSiVerifiedMoreBtn': 'recorderSiVerifiedDetail', 'recorderSiVerifiedPricesBtn': 'recorderSiVerifiedPrices',
+            'recorderSiVerifiedBackBtn': 'main', 'recorderSiVerifiedDetailBackBtn': 'recorderSiVerified', 'recorderSiVerifiedPricesBackBtn': 'recorderSiVerified'
+        };
         for (const [btnId, pageName] of Object.entries(navMap)) {
           const btn = document.getElementById(btnId);
           if (btn) btn.onclick = () => setPage(pageName);
@@ -453,10 +539,9 @@
             openModal('orderModal');
         };
         document.getElementById('orderModalClose').onclick = () => closeModal('orderModal');
-
-        // --- ИЗМЕНЕНО: Добавлен обработчик для кнопки в новом модальном окне ---
         document.getElementById('successOkBtn').onclick = () => closeModal('successModal');
 
+        document.getElementById('universalBackButton').onclick = goBack;
 
         document.querySelectorAll('.productCartBtn').forEach(btn => {
           btn.onclick = () => {
@@ -497,7 +582,6 @@
                 throw new Error(errorData.error || 'Ошибка ответа сервера.');
             }
             
-            // --- ИЗМЕНЕНО: Замена alert на новое модальное окно ---
             closeModal('orderModal');
             openModal('successModal');
             
@@ -514,7 +598,12 @@
           }
         };
 
-        const searchInputs = { 'loggerSearchInput': 'loggerPricesSection', 'recorderSearchInput': 'recorderPricesSection', 'recorderSiSearchInput': 'recorderSiPricesSection' };
+        const searchInputs = { 
+            'loggerSearchInput': 'loggerPricesSection', 
+            'recorderSearchInput': 'recorderPricesSection', 
+            'recorderSiSearchInput': 'recorderSiPricesSection',
+            'recorderSiVerifiedSearchInput': 'recorderSiVerifiedPricesSection'
+        };
         for (const [inputId, sectionId] of Object.entries(searchInputs)) {
           const inputElement = document.getElementById(inputId);
           if (inputElement) inputElement.addEventListener('keyup', () => filterProducts(inputId, sectionId));
